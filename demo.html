@@ -2235,6 +2235,10 @@
         --page-pad: 10px;
       }
 
+      .page-shell {
+        padding-bottom: calc(128px + env(safe-area-inset-bottom, 0px));
+      }
+
       .module-header,
       .topbar {
         padding-left: 14px;
@@ -2259,6 +2263,394 @@
 
       .dock {
         width: min(calc(100% - 16px), 640px);
+        bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-shell {
+        padding-top: 6px;
+        padding-bottom: calc(136px + env(safe-area-inset-bottom, 0px));
+      }
+
+      .mag-frame {
+        min-height: calc(100vh - 12px);
+        border-radius: 24px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        gap: 10px;
+        padding: 12px;
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .brand-kicker {
+        font-size: 9px;
+        letter-spacing: 0.12em;
+      }
+
+      .brand-title {
+        font-size: 1.28rem;
+      }
+
+      .meta-block {
+        min-width: 86px;
+        font-size: 10px;
+      }
+
+      .module-shell {
+        padding: 12px;
+      }
+
+      .module-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+        padding: 0 0 14px;
+        margin-bottom: 14px;
+      }
+
+      .module-title {
+        font-size: clamp(2rem, 10vw, 3rem);
+      }
+
+      .module-copy {
+        margin-top: 6px;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .module-header .toolbar-actions {
+        width: 100%;
+        justify-content: stretch;
+      }
+
+      .module-header .toolbar-actions .ghost-btn,
+      .module-header .toolbar-actions .solid-btn {
+        flex: 1 1 calc(50% - 5px);
+        min-height: 46px;
+        padding: 12px 10px;
+        font-size: 10px;
+      }
+
+      .template-row,
+      .mood-row,
+      .cover-row,
+      .archive-tabs,
+      .book-thumb-strip {
+        gap: 8px;
+        padding-bottom: 2px;
+        scroll-snap-type: x proximity;
+      }
+
+      .template-btn,
+      .mood-btn,
+      .archive-tab {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        padding: 10px 14px;
+        font-size: 10px;
+      }
+
+      .field-card {
+        padding: 14px;
+        min-height: 132px;
+      }
+
+      .field-card.tight {
+        min-height: 108px;
+      }
+
+      .field-card.hero,
+      .upload-stage {
+        min-height: 190px;
+      }
+
+      .field-input-title {
+        min-height: 92px;
+        font-size: clamp(2.2rem, 10vw, 3rem);
+        line-height: 0.94;
+      }
+
+      .field-input-subtitle {
+        min-height: 82px;
+        font-size: clamp(1.2rem, 5.4vw, 1.55rem);
+      }
+
+      .field-input-body {
+        min-height: 196px;
+        font-size: 13px;
+        line-height: 1.78;
+      }
+
+      .field-input-quote {
+        min-height: 140px;
+        font-size: clamp(1.45rem, 6.6vw, 2rem);
+      }
+
+      .music-url-input,
+      .note-input,
+      .note-textarea,
+      .mini-input,
+      .mini-note {
+        font-size: 13px;
+      }
+
+      .cover-choice {
+        width: 96px;
+        min-width: 96px;
+        height: 122px;
+      }
+
+      .preview-panel {
+        gap: 14px;
+      }
+
+      .journal-sheet {
+        min-height: 460px;
+        border-radius: 22px;
+      }
+
+      .journal-sheet.compact {
+        min-height: 340px;
+      }
+
+      .journal-sheet.book {
+        min-height: 520px;
+      }
+
+      .journal-sheet-content,
+      .journal-sheet.has-cover.cover-deco .journal-sheet-content,
+      .journal-sheet.has-cover.cover-deco2 .journal-sheet-content {
+        inset: 11% 9% 8%;
+        gap: 10px;
+      }
+
+      .journal-sheet-underlay,
+      .journal-sheet.has-cover.cover-deco .journal-sheet-underlay,
+      .journal-sheet.has-cover.cover-deco2 .journal-sheet-underlay {
+        inset: 10% 9% 8%;
+      }
+
+      .journal-title {
+        font-size: clamp(1.45rem, 7.4vw, 2.3rem);
+      }
+
+      .journal-dek {
+        font-size: 0.98rem;
+        line-height: 1.35;
+      }
+
+      .journal-body {
+        font-size: 12px;
+        line-height: 1.65;
+      }
+
+      .journal-quote,
+      .journal-sheet.template-quote .journal-quote {
+        font-size: clamp(1.2rem, 6vw, 1.8rem);
+      }
+
+      .today-hero {
+        min-height: auto;
+        padding: 18px 16px;
+        gap: 14px;
+      }
+
+      .today-hero-copy {
+        font-size: 12px;
+      }
+
+      .today-hero-meta {
+        justify-items: start;
+        text-align: left;
+      }
+
+      .today-issue-no {
+        font-size: 3.2rem;
+      }
+
+      .today-block {
+        min-height: 88px;
+        padding: 14px;
+      }
+
+      .today-block-title {
+        font-size: 1.12rem;
+      }
+
+      .today-block-copy {
+        font-size: 12px;
+      }
+
+      .today-music-mini {
+        grid-template-columns: 42px 1fr;
+        gap: 10px;
+      }
+
+      .today-mini-embed {
+        width: 42px;
+        height: 42px;
+      }
+
+      .music-preview-card,
+      .music-preview-card.compact,
+      .music-preview-card.has-embed,
+      .music-list-card,
+      .music-list-card.has-embed {
+        grid-template-columns: 1fr;
+      }
+
+      .music-preview-card,
+      .music-list-card {
+        padding: 12px;
+        border-radius: 20px;
+      }
+
+      .music-preview-title {
+        font-size: 1.7rem;
+      }
+
+      .music-list-title {
+        font-size: 1.3rem;
+        line-height: 1.04;
+      }
+
+      .music-embed-wrap {
+        min-height: 232px;
+      }
+
+      .music-embed-wrap iframe {
+        height: 232px;
+      }
+
+      .music-list-side {
+        gap: 6px;
+      }
+
+      .character-card img {
+        aspect-ratio: 0.72 / 1;
+      }
+
+      .archive-tabs {
+        margin-bottom: 14px;
+      }
+
+      .gallery-card .journal-sheet {
+        min-height: 240px;
+      }
+
+      .paper-book-theater {
+        min-height: auto;
+        padding: 72px 12px 92px;
+        border-radius: 24px;
+      }
+
+      .paper-stack,
+      .paper-leaf.left,
+      .paper-book-title p {
+        display: none;
+      }
+
+      .paper-book-center {
+        width: min(100%, 360px);
+        grid-template-columns: 1fr;
+      }
+
+      .paper-leaf {
+        min-height: auto;
+        padding: 0;
+        transform: none;
+        margin: 0;
+      }
+
+      .paper-leaf::after {
+        display: none;
+      }
+
+      .paper-leaf.right {
+        transform: none;
+        margin: 0;
+      }
+
+      .paper-leaf .journal-sheet {
+        min-height: 500px;
+        box-shadow: 0 16px 28px rgba(0, 0, 0, 0.16);
+      }
+
+      .paper-book-count {
+        top: 18px;
+      }
+
+      .paper-book-title {
+        top: 42px;
+        width: calc(100% - 32px);
+      }
+
+      .paper-book-nav {
+        inset: auto 12px 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .paper-book-nav .ghost-btn {
+        width: 100%;
+      }
+
+      .book-thumb {
+        min-width: 98px;
+        width: 98px;
+      }
+
+      .book-thumb .journal-sheet {
+        min-height: 144px;
+      }
+
+      .dock {
+        width: calc(100% - 12px);
+        gap: 4px;
+        padding: 8px 6px calc(8px + env(safe-area-inset-bottom, 0px));
+        border-radius: 28px;
+      }
+
+      .dock-btn {
+        min-height: 56px;
+        padding: 6px 2px;
+        font-size: 8px;
+        letter-spacing: 0.06em;
+      }
+
+      .dock-btn strong {
+        font-size: 15px;
+        margin-bottom: 4px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .module-header .toolbar-actions .ghost-btn,
+      .module-header .toolbar-actions .solid-btn {
+        flex-basis: 100%;
+      }
+
+      .field-input-title {
+        font-size: clamp(2rem, 9vw, 2.5rem);
+      }
+
+      .music-preview-title {
+        font-size: 1.55rem;
+      }
+
+      .today-hero-quote {
+        font-size: clamp(1.55rem, 8.6vw, 2.2rem);
+      }
+
+      .today-block-title,
+      .music-list-title {
+        font-size: 1.18rem;
       }
     }
   </style>
