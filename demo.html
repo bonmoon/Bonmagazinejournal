@@ -1,0 +1,3151 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="theme-color" content="#1A1512">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Reflections — Cityboy Journal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;700&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --bg: #171310;
+      --bg-elevated: #201916;
+      --panel: #28211c;
+      --panel-soft: #312924;
+      --panel-ink: #221b17;
+      --line: rgba(248, 239, 226, 0.09);
+      --line-strong: rgba(248, 239, 226, 0.14);
+      --text: #F2EBDD;
+      --text-soft: #B7AA99;
+      --text-dim: #8C8074;
+      --cream: #F4EBDD;
+      --accent: #6E8FB8;
+      --accent-soft: #89A6C9;
+      --accent-deep: #3E5A7C;
+      --accent-warm: #C4714A;
+      --success: #688F72;
+      --radius: 26px;
+      --radius-sm: 20px;
+      --page-pad: 14px;
+      --shadow: 0 26px 70px rgba(0, 0, 0, 0.34);
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      background: linear-gradient(180deg, #15110f 0%, #1C1512 100%);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.5;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    input,
+    textarea {
+      border: none;
+      outline: none;
+      background: transparent;
+    }
+
+    .screen {
+      display: none;
+      min-height: 100vh;
+      animation: fade-in 0.2s ease;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .page-shell {
+      width: min(1880px, 100%);
+      margin: 0 auto;
+      padding: 10px var(--page-pad) 108px;
+    }
+
+    .mag-frame {
+      min-height: calc(100vh - 20px);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent), var(--bg-elevated);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .screen-cover .mag-frame {
+      background: #15110f;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .brand-kicker,
+    .section-kicker,
+    .field-kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .brand-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-style: italic;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+
+    .meta-block {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      color: var(--text-soft);
+      font-size: 11px;
+    }
+
+    .meta-issue {
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .module-shell {
+      padding: 16px;
+    }
+
+    .module-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 4px 0 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 16px;
+    }
+
+    .module-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+    }
+
+    .module-copy {
+      margin-top: 8px;
+      max-width: 46rem;
+      color: var(--text-soft);
+      font-size: 13px;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .ghost-btn,
+    .solid-btn,
+    .pill-btn,
+    .template-btn,
+    .mood-btn,
+    .cover-choice,
+    .dock-btn {
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: 0.2s ease;
+    }
+
+    .ghost-btn,
+    .pill-btn,
+    .template-btn,
+    .mood-btn {
+      border: 1px solid var(--line-strong);
+      background: transparent;
+      color: var(--cream);
+    }
+
+    .ghost-btn,
+    .solid-btn {
+      padding: 12px 16px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .solid-btn {
+      background: var(--accent);
+      color: #F9F4EB;
+      border: 1px solid rgba(110, 143, 184, 0.35);
+    }
+
+    .ghost-btn:hover,
+    .pill-btn:hover,
+    .template-btn:hover,
+    .mood-btn:hover,
+    .cover-choice:hover {
+      border-color: rgba(244, 235, 221, 0.24);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .solid-btn:hover {
+      background: var(--accent-soft);
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 18px;
+    }
+
+    .panel-soft {
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 18px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .today-grid,
+    .notes-grid,
+    .archive-grid,
+    .music-grid,
+    .write-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .cover-scene {
+      min-height: calc(100vh - 140px);
+      display: grid;
+      place-items: center;
+      padding: 20px 14px 10px;
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 34%),
+        #15110f;
+    }
+
+    .cover-card {
+      width: min(100%, 860px);
+      aspect-ratio: 1024 / 1536;
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: 0 26px 76px rgba(0, 0, 0, 0.4);
+    }
+
+    .cover-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cover-composed {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      background: #F7F0E4;
+      color: #1C1A16;
+    }
+
+    .cover-blue-top,
+    .cover-blue-bottom {
+      position: absolute;
+      left: 0;
+      right: 0;
+      background: #77A7D8;
+      color: #FFF7E7;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .cover-blue-top {
+      top: 0;
+      height: 22%;
+      padding-top: 5%;
+    }
+
+    .cover-blue-bottom {
+      bottom: 0;
+      height: 9%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 2.5rem);
+      font-style: italic;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-mini {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.55rem, 1vw, 0.75rem);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(28, 26, 22, 0.74);
+    }
+
+    .cover-logo {
+      margin-top: 2%;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.8rem, 12vw, 8rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.08em;
+      color: #FBF5E8;
+    }
+
+    .cover-issue {
+      position: absolute;
+      right: 4%;
+      top: 11%;
+      text-align: right;
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.58rem, 1vw, 0.8rem);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(28, 26, 22, 0.74);
+      z-index: 2;
+    }
+
+    .cover-persona {
+      position: absolute;
+      inset: auto 10% 8% 10%;
+      height: 72%;
+      width: auto;
+      margin: auto;
+      object-fit: contain;
+      z-index: 2;
+      pointer-events: none;
+      filter: drop-shadow(0 24px 28px rgba(28, 26, 22, 0.16));
+    }
+
+    .cover-blob {
+      position: absolute;
+      z-index: 3;
+      padding: 14px 22px;
+      border-radius: 999px;
+      color: #FFF7E7;
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(0.9rem, 1.8vw, 1.35rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      box-shadow: 0 12px 24px rgba(28, 26, 22, 0.12);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .cover-blob.style {
+      left: 4%;
+      top: 48%;
+      background: #F37024;
+      transform: rotate(-8deg);
+    }
+
+    .cover-blob.music {
+      right: 4%;
+      top: 41%;
+      background: #F06B63;
+      transform: rotate(6deg);
+    }
+
+    .cover-blob.travel {
+      left: 5%;
+      bottom: 16%;
+      background: #7FA146;
+      transform: rotate(-8deg);
+    }
+
+    .hotspot {
+      position: absolute;
+      z-index: 4;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.46);
+      background: rgba(18, 16, 14, 0.22);
+      backdrop-filter: blur(8px);
+      color: #FFF7E7;
+      font-size: 0;
+      overflow: hidden;
+    }
+
+    .hotspot::after {
+      content: '';
+      position: absolute;
+      inset: 50% auto auto 50%;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 247, 231, 0.92);
+      box-shadow: 0 0 0 8px rgba(255, 247, 231, 0.12);
+    }
+
+    .hotspot.labelled {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      width: auto;
+      height: auto;
+      min-width: 92px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFF7E7;
+    }
+
+    .hotspot.labelled::after {
+      display: none;
+    }
+
+    .cover-default .spot-music {
+      left: 69%;
+      top: 28%;
+      width: 52px;
+      height: 52px;
+    }
+
+    .cover-default .spot-write {
+      left: 14%;
+      top: 37%;
+      width: 46px;
+      height: 46px;
+    }
+
+    .cover-default .spot-today {
+      left: 12%;
+      top: 61%;
+      width: 46px;
+      height: 46px;
+    }
+
+    .cover-default .spot-travel {
+      left: 16%;
+      top: 86%;
+      width: 50px;
+      height: 50px;
+    }
+
+    .cover-default .spot-style {
+      left: 12%;
+      top: 52%;
+      width: 130px;
+      height: 56px;
+      opacity: 0.01;
+      background: transparent;
+      border-color: transparent;
+      backdrop-filter: none;
+    }
+
+    .cover-default .spot-archive {
+      right: 4%;
+      top: 88%;
+      width: 54px;
+      height: 54px;
+    }
+
+    .cover-composed .spot-write {
+      left: 8%;
+      top: 38%;
+      width: 110px;
+      height: 44px;
+    }
+
+    .cover-composed .spot-music {
+      right: 8%;
+      top: 28%;
+      width: 54px;
+      height: 54px;
+    }
+
+    .cover-composed .spot-style {
+      left: 5%;
+      top: 48%;
+      width: 170px;
+      height: 64px;
+      opacity: 0.01;
+      background: transparent;
+      border-color: transparent;
+      backdrop-filter: none;
+    }
+
+    .cover-composed .spot-travel {
+      left: 6%;
+      bottom: 18%;
+      width: 170px;
+      height: 64px;
+      opacity: 0.01;
+      background: transparent;
+      border-color: transparent;
+      backdrop-filter: none;
+    }
+
+    .cover-composed .spot-archive {
+      right: 6%;
+      bottom: 18%;
+      width: 54px;
+      height: 54px;
+    }
+
+    .cover-composed .spot-today {
+      right: 8%;
+      top: 61%;
+      width: 54px;
+      height: 54px;
+    }
+
+    .cover-meta {
+      padding: 14px 0 0;
+      text-align: center;
+      color: var(--text-soft);
+      font-size: 12px;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .panel-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .panel-copy {
+      color: var(--text-soft);
+      font-size: 13px;
+    }
+
+    .today-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+
+    .lead-card {
+      min-height: 270px;
+      display: grid;
+      gap: 16px;
+      align-content: space-between;
+      background: linear-gradient(140deg, rgba(110, 143, 184, 0.16), rgba(196, 113, 74, 0.08)), var(--panel);
+    }
+
+    .lead-card .panel-title {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 0.95;
+    }
+
+    .stats-list,
+    .week-list,
+    .entry-list,
+    .track-list,
+    .character-list,
+    .note-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .stat-row,
+    .entry-card,
+    .track-card,
+    .character-card,
+    .note-card {
+      padding: 14px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .entry-card.active {
+      border-color: rgba(110, 143, 184, 0.34);
+      background: rgba(110, 143, 184, 0.08);
+    }
+
+    .week-list {
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+
+    .week-chip {
+      padding: 12px 8px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      text-align: center;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .week-chip.done {
+      background: rgba(110, 143, 184, 0.14);
+      border-color: rgba(110, 143, 184, 0.34);
+    }
+
+    .week-chip.today {
+      box-shadow: inset 0 0 0 1px rgba(244, 235, 221, 0.36);
+    }
+
+    .week-num {
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cream);
+    }
+
+    .week-day {
+      display: block;
+      margin-top: 3px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .entry-meta,
+    .micro-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      color: var(--text-dim);
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .entry-title {
+      margin-top: 8px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .entry-body {
+      margin-top: 8px;
+      color: var(--text-soft);
+      font-size: 13px;
+    }
+
+    .template-row,
+    .mood-row,
+    .cover-row {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .template-row::-webkit-scrollbar,
+    .mood-row::-webkit-scrollbar,
+    .cover-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .template-btn,
+    .mood-btn {
+      padding: 11px 16px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .template-btn.active,
+    .mood-btn.active {
+      background: var(--cream);
+      color: #251D18;
+      border-color: rgba(244, 235, 221, 0.28);
+    }
+
+    .write-grid {
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: start;
+    }
+
+    .write-column {
+      display: grid;
+      gap: 18px;
+    }
+
+    .editor-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .editor-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .editor-grid.editorial,
+    .editor-grid.quote,
+    .editor-grid.list {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .editor-grid.minimal {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .editor-grid.photo {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .field-card {
+      padding: 18px;
+      border-radius: 28px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      min-height: 160px;
+    }
+
+    .field-card.tight {
+      min-height: 118px;
+    }
+
+    .field-card.hero {
+      min-height: 260px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at center, rgba(110, 143, 184, 0.08), transparent 48%),
+        var(--panel);
+    }
+
+    .field-card.full-span {
+      grid-column: 1 / -1;
+    }
+
+    .field-card.hidden-for-template {
+      display: none;
+    }
+
+    .field-input-title,
+    .field-input-subtitle,
+    .field-input-body,
+    .field-input-quote,
+    .field-input-mini {
+      width: 100%;
+      resize: none;
+      color: var(--cream);
+    }
+
+    .field-input-title {
+      min-height: 132px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 5vw, 4.6rem);
+      line-height: 0.93;
+      letter-spacing: -0.05em;
+    }
+
+    .field-input-subtitle {
+      min-height: 112px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      font-style: italic;
+      line-height: 1.32;
+      color: var(--text-soft);
+    }
+
+    .field-input-body {
+      min-height: 260px;
+      font-size: 14px;
+      line-height: 2;
+      color: var(--text-soft);
+    }
+
+    .field-input-quote {
+      min-height: 180px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--cream);
+    }
+
+    .field-input-mini {
+      min-height: 84px;
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--text-soft);
+    }
+
+    .field-input-title::placeholder,
+    .field-input-subtitle::placeholder,
+    .field-input-body::placeholder,
+    .field-input-quote::placeholder,
+    .field-input-mini::placeholder {
+      color: rgba(244, 235, 221, 0.44);
+    }
+
+    .upload-button {
+      padding: 13px 24px;
+      border-radius: 999px;
+      background: rgba(244, 235, 221, 0.94);
+      color: #2A221C;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .upload-stage {
+      position: relative;
+      width: 100%;
+      min-height: 220px;
+      border-radius: 24px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(180deg, rgba(110, 143, 184, 0.08), transparent), rgba(255, 255, 255, 0.01);
+      border: 1px dashed rgba(244, 235, 221, 0.16);
+    }
+
+    .upload-stage img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 14px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    .cover-choice {
+      width: 112px;
+      min-width: 112px;
+      height: 144px;
+      padding: 8px;
+      border: 1px solid var(--line-strong);
+      overflow: hidden;
+      position: relative;
+      color: var(--text-soft);
+    }
+
+    .cover-choice.active {
+      border-color: rgba(110, 143, 184, 0.56);
+      box-shadow: inset 0 0 0 1px rgba(110, 143, 184, 0.42);
+    }
+
+    .cover-choice img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.92;
+    }
+
+    .cover-choice span {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      align-self: flex-end;
+      margin-top: auto;
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: rgba(22, 18, 16, 0.66);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .switch-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      padding: 16px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .switch-row input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--cream);
+    }
+
+    .preview-panel {
+      display: grid;
+      gap: 18px;
+    }
+
+    .preview-sheet {
+      position: relative;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent), var(--panel-soft);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      min-height: 320px;
+    }
+
+    .preview-cover {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.96;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .preview-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 14px;
+      padding: 22px;
+    }
+
+    .journal-sheet {
+      position: relative;
+      width: 100%;
+      min-height: 560px;
+      aspect-ratio: 0.73 / 1;
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 38%),
+        #F2E8DA;
+      color: #231C17;
+      border: 1px solid rgba(35, 28, 23, 0.08);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18);
+    }
+
+    .journal-sheet.compact {
+      min-height: 420px;
+    }
+
+    .journal-sheet.book {
+      min-height: 700px;
+    }
+
+    .journal-sheet-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .journal-sheet-frame.frame-deco {
+      mix-blend-mode: screen;
+      opacity: 0.92;
+    }
+
+    .journal-sheet-content {
+      position: absolute;
+      inset: 13% 10% 9%;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .journal-sheet.has-cover.cover-deco .journal-sheet-content {
+      inset: 12% 11% 10%;
+    }
+
+    .journal-sheet.has-cover.cover-deco2 .journal-sheet-content {
+      inset: 11% 11% 10%;
+    }
+
+    .journal-sheet.with-media .journal-sheet-content {
+      grid-template-rows: auto auto minmax(160px, 38%) auto auto;
+    }
+
+    .journal-sheet.template-photo .journal-sheet-content {
+      grid-template-rows: minmax(220px, 46%) auto auto auto;
+    }
+
+    .journal-sheet.template-quote .journal-sheet-content {
+      justify-items: center;
+      text-align: center;
+      align-content: center;
+      inset: 14% 12% 12%;
+    }
+
+    .journal-sheet.template-list .journal-sheet-content {
+      inset: 12% 11% 10%;
+    }
+
+    .journal-media {
+      position: relative;
+      min-height: 180px;
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(35, 28, 23, 0.08);
+      border: 1px solid rgba(35, 28, 23, 0.08);
+    }
+
+    .journal-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    .journal-kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(35, 28, 23, 0.55);
+    }
+
+    .journal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 4vw, 3rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      color: #1E1813;
+    }
+
+    .journal-dek {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      line-height: 1.4;
+      color: rgba(35, 28, 23, 0.72);
+    }
+
+    .journal-body {
+      font-size: 13px;
+      line-height: 1.8;
+      color: rgba(35, 28, 23, 0.84);
+    }
+
+    .journal-quote {
+      padding-left: 12px;
+      border-left: 2px solid rgba(35, 28, 23, 0.32);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.08rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: #1F1813;
+    }
+
+    .journal-sheet.template-quote .journal-quote {
+      padding-left: 0;
+      border-left: none;
+      font-size: clamp(1.6rem, 4vw, 2.7rem);
+      line-height: 1.45;
+    }
+
+    .journal-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .journal-list-row {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(35, 28, 23, 0.08);
+    }
+
+    .journal-list-index {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: rgba(35, 28, 23, 0.38);
+      line-height: 1;
+    }
+
+    .archive-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .archive-tab {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+
+    .archive-tab.active {
+      background: var(--cream);
+      color: #261F1A;
+    }
+
+    .archive-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .gallery-card {
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.02);
+      text-align: left;
+    }
+
+    .gallery-card.active {
+      border-color: rgba(110, 143, 184, 0.34);
+      background: rgba(110, 143, 184, 0.08);
+    }
+
+    .gallery-card .journal-sheet {
+      min-height: 300px;
+      box-shadow: none;
+    }
+
+    .book-stage {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .book-sidebar {
+      display: grid;
+      gap: 12px;
+    }
+
+    .book-spread {
+      padding: 16px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .book-pages {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .book-placeholder {
+      min-height: 700px;
+      border-radius: 28px;
+      border: 1px dashed var(--line-strong);
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      color: var(--text-dim);
+      text-align: center;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    }
+
+    .preview-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--cream);
+    }
+
+    .preview-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--text-soft);
+    }
+
+    .preview-body {
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--cream);
+    }
+
+    .preview-rule {
+      width: 100%;
+      height: 1px;
+      background: rgba(244, 235, 221, 0.14);
+    }
+
+    .preview-quote {
+      padding-left: 12px;
+      border-left: 2px solid rgba(244, 235, 221, 0.5);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--cream);
+    }
+
+    .preview-photo {
+      min-height: 180px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(110, 143, 184, 0.12), rgba(0, 0, 0, 0.08)), #342A23;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .preview-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .preview-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .preview-list-item {
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      gap: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(244, 235, 221, 0.08);
+    }
+
+    .preview-index {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      line-height: 1;
+      color: rgba(244, 235, 221, 0.4);
+    }
+
+    .music-grid {
+      grid-template-columns: 0.95fr 1.05fr;
+    }
+
+    .player-card {
+      display: grid;
+      gap: 16px;
+      background: linear-gradient(140deg, rgba(110, 143, 184, 0.18), rgba(29, 24, 21, 0.4)), var(--panel);
+    }
+
+    .track-card.active {
+      background: rgba(110, 143, 184, 0.12);
+      border-color: rgba(110, 143, 184, 0.34);
+    }
+
+    .progress {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent-soft), var(--accent));
+    }
+
+    .character-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .character-card img {
+      width: 100%;
+      aspect-ratio: 0.62 / 1;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 12px;
+      border: 1px solid var(--line);
+      background: #1C1714;
+    }
+
+    .character-card.locked {
+      opacity: 0.58;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--line-strong);
+      color: var(--text-soft);
+    }
+
+    .status-chip.active {
+      background: rgba(110, 143, 184, 0.16);
+      border-color: rgba(110, 143, 184, 0.34);
+      color: var(--cream);
+    }
+
+    .status-chip.unlocked {
+      background: rgba(104, 143, 114, 0.14);
+      border-color: rgba(104, 143, 114, 0.3);
+      color: #DDE6D8;
+    }
+
+    .status-chip.locked {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .list-editor {
+      display: grid;
+      gap: 12px;
+    }
+
+    .list-row {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .list-index {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.65rem;
+      line-height: 1;
+      color: rgba(244, 235, 221, 0.36);
+    }
+
+    .mini-input {
+      width: 100%;
+      min-height: 36px;
+      font-size: 14px;
+      color: var(--cream);
+    }
+
+    .mini-note {
+      width: 100%;
+      min-height: 56px;
+      resize: none;
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--text-soft);
+      margin-top: 6px;
+    }
+
+    .note-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .note-input,
+    .note-textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--line);
+      color: var(--cream);
+    }
+
+    .note-textarea {
+      min-height: 120px;
+      resize: vertical;
+      line-height: 1.8;
+    }
+
+    .dock {
+      position: fixed;
+      left: 50%;
+      bottom: 14px;
+      z-index: 30;
+      transform: translateX(-50%);
+      width: min(calc(100% - 26px), 840px);
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+      padding: 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(244, 235, 221, 0.12);
+      background: rgba(240, 232, 219, 0.12);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+    }
+
+    .dock-btn {
+      min-height: 62px;
+      padding: 8px 6px;
+      flex-direction: column;
+      color: rgba(250, 244, 235, 0.78);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .dock-btn strong {
+      font-size: 18px;
+      line-height: 1;
+      margin-bottom: 5px;
+      color: currentColor;
+    }
+
+    .dock-btn.active {
+      background: rgba(244, 235, 221, 0.94);
+      color: #241D18;
+    }
+
+    .dock-btn:not(.active):hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      top: 18px;
+      z-index: 40;
+      transform: translateX(-50%) translateY(-12px);
+      opacity: 0;
+      pointer-events: none;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(12, 10, 8, 0.94);
+      color: var(--cream);
+      border: 1px solid rgba(244, 235, 221, 0.12);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      transition: 0.3s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .hidden-input {
+      display: none;
+    }
+
+    @media (max-width: 1180px) {
+      .today-grid,
+      .write-grid,
+      .music-grid,
+      .notes-grid,
+      .book-stage {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 860px) {
+      :root {
+        --page-pad: 10px;
+      }
+
+      .module-header,
+      .topbar {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .editor-grid.editorial,
+      .editor-grid.minimal,
+      .editor-grid.photo,
+      .editor-grid.quote,
+      .editor-grid.list,
+      .character-list,
+      .week-list,
+      .book-pages,
+      .archive-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .cover-card {
+        width: min(100%, 540px);
+      }
+
+      .dock {
+        width: min(calc(100% - 16px), 640px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main id="screen-cover" class="screen screen-cover active"></main>
+  <main id="screen-today" class="screen"></main>
+  <main id="screen-write" class="screen"></main>
+  <main id="screen-music" class="screen"></main>
+  <main id="screen-style" class="screen"></main>
+  <main id="screen-travel" class="screen"></main>
+  <main id="screen-archive" class="screen"></main>
+
+  <input id="draft-image-input" class="hidden-input" type="file" accept="image/*">
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script>
+    const STORAGE_KEY = 'magazine-journal-cityboy-v3';
+    const MEMORY_STORE = {};
+    const MODULES = [
+      { id: 'today', icon: '◌', label: 'Today' },
+      { id: 'write', icon: '✎', label: 'Write' },
+      { id: 'music', icon: '♫', label: 'Music' },
+      { id: 'style', icon: '◆', label: 'Style' },
+      { id: 'travel', icon: '↗', label: 'Travel' },
+      { id: 'archive', icon: '▣', label: 'Archive' }
+    ];
+    const MOODS = [
+      { id: 'chill', emoji: '☁️', label: 'Chill' },
+      { id: 'reflective', emoji: '🕯️', label: 'Reflective' },
+      { id: 'glowing', emoji: '☀️', label: 'Glowing' },
+      { id: 'focused', emoji: '📘', label: 'Focused' },
+      { id: 'energetic', emoji: '⚡', label: 'Energetic' }
+    ];
+    const TEMPLATES = [
+      { id: 'editorial', label: 'Editorial' },
+      { id: 'minimal', label: 'Minimal' },
+      { id: 'photo', label: 'Photo-led' },
+      { id: 'quote', label: 'Quote' },
+      { id: 'list', label: 'List' }
+    ];
+    const TRACKS = [
+      { id: 'track-1', title: 'Late Tram Window', artist: 'Harbor Youth', mood: 'Chill', duration: '03:42', note: 'Soft synths for a rainy ride home.' },
+      { id: 'track-2', title: 'Bagel & Denim', artist: 'North Arcade', mood: 'Focused', duration: '04:18', note: 'A cityboy uniform in song form.' },
+      { id: 'track-3', title: 'Blue Hour Ride', artist: 'Metro Bloom', mood: 'Reflective', duration: '02:57', note: 'Good with cycling, dusk, and long captions.' },
+      { id: 'track-4', title: 'Coffee Steam Club', artist: 'Morning Unit', mood: 'Glowing', duration: '03:26', note: 'Warm keys and just enough optimism.' }
+    ];
+    const JOURNAL_COVERS = [
+      { id: 'none', label: 'No cover', src: '' },
+      { id: 'deco', label: 'Cafe Code', src: 'deco.png' },
+      { id: 'deco2', label: 'Donut Cafe', src: 'deco2.png' }
+    ];
+    const PERSONAS = [
+      {
+        id: 'city-wanderer',
+        name: 'The City Wanderer',
+        unlock: 0,
+        coverMode: 'image',
+        coverSrc: 'Mainvisual.png',
+        subtitle: 'Original illustrated issue cover.'
+      },
+      {
+        id: 'the-artist',
+        name: 'The Artist',
+        unlock: 2,
+        coverMode: 'composed',
+        coverSrc: 'persona2.png',
+        subtitle: 'New persona reference added to the cover rotation.'
+      },
+      {
+        id: 'the-music-head',
+        name: 'The Music Head',
+        unlock: 3,
+        coverMode: 'composed',
+        coverSrc: 'persona3.png',
+        subtitle: 'Headphone issue version for music-heavy weeks.'
+      }
+    ];
+    const TROPHIES = [
+      {
+        id: 'first-page',
+        title: 'First Page',
+        description: '完成第 1 条 journal entry。',
+        unlocked: (stats) => stats.entryCount >= 1
+      },
+      {
+        id: 'three-day-strike',
+        title: '3-Day Strike',
+        description: '连续 3 天写作。',
+        unlocked: (stats) => stats.streak >= 3
+      },
+      {
+        id: 'music-linker',
+        title: 'Music Linker',
+        description: '关联 3 首歌曲到日记。',
+        unlocked: (stats) => stats.linkedSongs >= 3
+      },
+      {
+        id: 'photo-story',
+        title: 'Photo Story',
+        description: '完成 3 条 Photo-led 条目。',
+        unlocked: (stats) => stats.photoEntries >= 3
+      },
+      {
+        id: 'deep-writer',
+        title: 'Deep Writer',
+        description: '累计超过 1800 字。',
+        unlocked: (stats) => stats.totalWords >= 1800
+      }
+    ];
+
+    let currentScreen = 'cover';
+    let playTimer = null;
+    let appState = loadState();
+
+    function storageGet(key) {
+      try {
+        return window.localStorage.getItem(key);
+      } catch (error) {
+        return MEMORY_STORE[key] || null;
+      }
+    }
+
+    function storageSet(key, value) {
+      try {
+        window.localStorage.setItem(key, value);
+      } catch (error) {
+        MEMORY_STORE[key] = value;
+      }
+    }
+
+    function isoDate(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return year + '-' + month + '-' + day;
+    }
+
+    function parseCalendarDate(value) {
+      if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+        return new Date(value + 'T00:00:00');
+      }
+      return new Date(value);
+    }
+
+    function niceDate(value) {
+      return parseCalendarDate(value).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        weekday: 'short'
+      });
+    }
+
+    function dayLabel(date) {
+      return date.toLocaleDateString('en-US', { weekday: 'short' });
+    }
+
+    function escapeHtml(value) {
+      return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function excerpt(text, count) {
+      const clean = String(text || '').trim().replace(/\s+/g, ' ');
+      return clean.length > count ? clean.slice(0, count).trim() + '…' : clean;
+    }
+
+    function wordCount(text) {
+      const clean = String(text || '').trim();
+      return clean ? clean.split(/\s+/).length : 0;
+    }
+
+    function nextId(prefix) {
+      return prefix + '-' + Date.now() + '-' + Math.random().toString(16).slice(2, 7);
+    }
+
+    function daysBetween(left, right) {
+      const dayMs = 24 * 60 * 60 * 1000;
+      const a = new Date(left.getFullYear(), left.getMonth(), left.getDate()).getTime();
+      const b = new Date(right.getFullYear(), right.getMonth(), right.getDate()).getTime();
+      return Math.round((a - b) / dayMs);
+    }
+
+    function defaultListItems() {
+      return [
+        { title: '', note: '' },
+        { title: '', note: '' },
+        { title: '', note: '' }
+      ];
+    }
+
+    function defaultDraft() {
+      return {
+        template: 'minimal',
+        mood: 'glowing',
+        title: '',
+        dek: '',
+        body: '',
+        pullquote: '',
+        imageData: '',
+        linkMusic: true,
+        quoteBy: '',
+        coverAsset: 'deco2',
+        listItems: defaultListItems()
+      };
+    }
+
+    function buildDefaultState() {
+      return {
+        currentTrack: 1,
+        musicProgress: 38,
+        draft: defaultDraft(),
+        styleDraft: { title: '', note: '' },
+        travelDraft: { title: '', note: '' },
+        archive: {
+          view: 'gallery',
+          selectedEntryId: 'entry-2'
+        },
+        profile: {
+          selectedPersona: 'city-wanderer'
+        },
+        entries: [
+          {
+            id: 'entry-1',
+            date: '2026-04-04',
+            createdAt: '2026-04-04T22:16:00',
+            template: 'photo',
+            mood: 'chill',
+            title: 'Blue Hour Ride to Jingan',
+            dek: 'Bike lane air, low clouds, and one denim jacket that finally felt like spring.',
+            body: 'Rode home slowly so I could keep the blue light a little longer. A coffee stop, one good song, and a slow route were enough to make the day feel like a proper magazine spread.',
+            pullquote: 'Some days only need good light and a longer way home.',
+            imageData: '',
+            linkMusic: true,
+            linkedTrack: 'Late Tram Window',
+            quoteBy: '',
+            coverAsset: 'deco',
+            listItems: defaultListItems(),
+            wordCount: 34
+          },
+          {
+            id: 'entry-2',
+            date: '2026-04-05',
+            createdAt: '2026-04-05T23:02:00',
+            template: 'editorial',
+            mood: 'focused',
+            title: 'Bagel, grey knit, same corner table',
+            dek: 'The kind of Sunday that looks small from the outside but stacks beautifully in memory.',
+            body: 'I wrote three clean paragraphs, circled one lyric in the margin, and decided this journal should feel like an issue worth reopening instead of a task list worth clearing.',
+            pullquote: 'Live simple, dress well, keep the page open.',
+            imageData: '',
+            linkMusic: true,
+            linkedTrack: 'Bagel & Denim',
+            quoteBy: '',
+            coverAsset: 'deco2',
+            listItems: defaultListItems(),
+            wordCount: 29
+          }
+        ],
+        styleNotes: [
+          {
+            id: 'style-1',
+            title: 'Spring uniform',
+            note: 'Grey knit, wide denim, white tee, orange-accent sneakers. Keep silhouettes relaxed and clean.'
+          }
+        ],
+        travelNotes: [
+          {
+            id: 'travel-1',
+            title: 'Weekend loop',
+            note: 'Coffee stop, riverside cycle, bookstore, then one dinner place worth saving in the archive.'
+          }
+        ]
+      };
+    }
+
+    // Rehydrate saved data safely, while also repairing any missing draft fields after schema changes.
+    function loadState() {
+      const raw = storageGet(STORAGE_KEY);
+      if (!raw) {
+        return buildDefaultState();
+      }
+
+      try {
+        const parsed = JSON.parse(raw);
+        return {
+          ...buildDefaultState(),
+          ...parsed,
+          draft: {
+            ...defaultDraft(),
+            ...(parsed.draft || {}),
+            listItems: Array.isArray(parsed.draft && parsed.draft.listItems) && parsed.draft.listItems.length
+              ? parsed.draft.listItems
+              : defaultListItems()
+          },
+          styleDraft: { title: '', note: '', ...(parsed.styleDraft || {}) },
+          travelDraft: { title: '', note: '', ...(parsed.travelDraft || {}) },
+          archive: { view: 'gallery', selectedEntryId: 'entry-2', ...(parsed.archive || {}) },
+          profile: { selectedPersona: 'city-wanderer', ...(parsed.profile || {}) }
+        };
+      } catch (error) {
+        return buildDefaultState();
+      }
+    }
+
+    function saveState() {
+      storageSet(STORAGE_KEY, JSON.stringify(appState));
+    }
+
+    function getPersona(id) {
+      return PERSONAS.find((persona) => persona.id === id) || PERSONAS[0];
+    }
+
+    function getCoverAsset(id) {
+      return JOURNAL_COVERS.find((cover) => cover.id === id) || JOURNAL_COVERS[0];
+    }
+
+    function draftAsEntry(draft) {
+      return {
+        template: draft.template,
+        mood: draft.mood,
+        title: draft.template === 'quote' ? (draft.pullquote || draft.dek || 'Untitled quote page') : (draft.title || 'Untitled cityboy note'),
+        dek: draft.dek,
+        body: draft.template === 'list'
+          ? draft.listItems.map((item) => (item.title + ' ' + item.note).trim()).filter(Boolean).join(' ')
+          : (draft.body || draft.pullquote || ''),
+        pullquote: draft.pullquote,
+        imageData: draft.imageData,
+        quoteBy: draft.quoteBy,
+        coverAsset: draft.coverAsset,
+        listItems: draft.listItems
+      };
+    }
+
+    function getArchiveEntries(stats) {
+      return stats.entries;
+    }
+
+    function getSelectedArchiveEntry(stats) {
+      const entries = getArchiveEntries(stats);
+      return entries.find((entry) => entry.id === appState.archive.selectedEntryId) || entries[0] || null;
+    }
+
+    // Render a finished journal page with the selected decorative cover sitting above the content layer.
+    function renderJournalSheet(entry, mode) {
+      const cover = getCoverAsset(entry.coverAsset);
+      const title = escapeHtml(entry.title || 'Untitled cityboy note');
+      const dek = escapeHtml(entry.dek || '');
+      const body = escapeHtml(excerpt(entry.body || 'No body text yet.', mode === 'book' ? 420 : 220));
+      const quote = escapeHtml(entry.pullquote || '');
+      const quoteBy = escapeHtml(entry.quoteBy || '');
+      const listItems = Array.isArray(entry.listItems) ? entry.listItems : [];
+      const hasMedia = Boolean(entry.imageData) && entry.template !== 'quote' && entry.template !== 'list';
+      const classes = [
+        'journal-sheet',
+        mode === 'book' ? 'book' : 'compact',
+        'template-' + entry.template,
+        cover.src ? 'has-cover' : '',
+        cover.src ? 'cover-' + cover.id : '',
+        hasMedia ? 'with-media' : ''
+      ].filter(Boolean).join(' ');
+
+      let contentHtml = '';
+
+      if (entry.template === 'quote') {
+        contentHtml = `
+          <div class="journal-kicker">${escapeHtml(niceDate(entry.date || new Date()))}</div>
+          <div class="journal-quote">${quote || 'Pull one sentence that deserves more space.'}</div>
+          ${dek ? `<div class="journal-dek">${dek}</div>` : ''}
+          ${quoteBy ? `<div class="journal-body">${quoteBy}</div>` : ''}
+        `;
+      } else if (entry.template === 'list') {
+        contentHtml = `
+          <div class="journal-kicker">${escapeHtml(niceDate(entry.date || new Date()))}</div>
+          <div class="journal-title">${title}</div>
+          <div class="journal-list">
+            ${listItems.map((item, index) => `
+              <div class="journal-list-row">
+                <div class="journal-list-index">${index + 1}</div>
+                <div>
+                  <div class="journal-body"><strong>${escapeHtml(item.title || 'List title')}</strong></div>
+                  <div class="journal-dek">${escapeHtml(item.note || 'Short note under the item.')}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else if (entry.template === 'photo') {
+        contentHtml = `
+          <div class="journal-kicker">${escapeHtml(niceDate(entry.date || new Date()))}</div>
+          ${entry.imageData ? `<div class="journal-media"><img src="${entry.imageData}" alt="${title}"></div>` : ''}
+          <div class="journal-title">${title}</div>
+          ${dek ? `<div class="journal-dek">${dek}</div>` : ''}
+          <div class="journal-body">${body}</div>
+        `;
+      } else {
+        contentHtml = `
+          <div class="journal-kicker">${escapeHtml(niceDate(entry.date || new Date()))}</div>
+          <div class="journal-title">${title}</div>
+          ${dek ? `<div class="journal-dek">${dek}</div>` : ''}
+          ${entry.imageData && entry.template === 'editorial' ? `<div class="journal-media"><img src="${entry.imageData}" alt="${title}"></div>` : ''}
+          <div class="journal-body">${body}</div>
+          ${quote ? `<div class="journal-quote">${quote}</div>` : ''}
+        `;
+      }
+
+      return `
+        <article class="${classes}">
+          <div class="journal-sheet-content">
+            ${contentHtml}
+          </div>
+          ${cover.src ? `<img class="journal-sheet-frame ${cover.id === 'deco' ? 'frame-deco' : ''}" src="${cover.src}" alt="${escapeHtml(cover.label)}">` : ''}
+        </article>
+      `;
+    }
+
+    // Compute streaks, trophy unlocks, and selected persona availability from the saved entry archive.
+    function deriveStats(state) {
+      const entries = [...state.entries].sort((left, right) => new Date(right.createdAt) - new Date(left.createdAt));
+      const dateSet = [...new Set(entries.map((entry) => entry.date))].sort((left, right) => parseCalendarDate(right) - parseCalendarDate(left));
+      const totalWords = entries.reduce((sum, entry) => sum + (entry.wordCount || wordCount(entry.body)), 0);
+      const linkedSongs = entries.filter((entry) => entry.linkedTrack).length;
+      const photoEntries = entries.filter((entry) => entry.template === 'photo').length;
+      const today = new Date();
+      const todayKey = isoDate(today);
+      let streak = 0;
+
+      if (dateSet.length) {
+        const latest = parseCalendarDate(dateSet[0]);
+        const gap = daysBetween(today, latest);
+        if (gap <= 1) {
+          let cursor = latest;
+          while (dateSet.includes(isoDate(cursor))) {
+            streak += 1;
+            cursor = new Date(cursor);
+            cursor.setDate(cursor.getDate() - 1);
+          }
+        }
+      }
+
+      const trophies = TROPHIES.map((trophy) => ({
+        ...trophy,
+        isUnlocked: trophy.unlocked({
+          entryCount: entries.length,
+          linkedSongs,
+          photoEntries,
+          totalWords,
+          streak
+        })
+      }));
+      const trophyCount = trophies.filter((trophy) => trophy.isUnlocked).length;
+      const unlockedPersonas = PERSONAS.filter((persona) => trophyCount >= persona.unlock);
+      const selectedPersona = unlockedPersonas.find((persona) => persona.id === state.profile.selectedPersona) || PERSONAS[0];
+      const week = [];
+
+      for (let offset = 6; offset >= 0; offset -= 1) {
+        const current = new Date(today);
+        current.setDate(today.getDate() - offset);
+        const currentKey = isoDate(current);
+        week.push({
+          key: currentKey,
+          day: dayLabel(current),
+          num: current.getDate(),
+          done: dateSet.includes(currentKey),
+          today: currentKey === todayKey
+        });
+      }
+
+      return {
+        entries,
+        latestEntry: entries[0] || null,
+        entryCount: entries.length,
+        linkedSongs,
+        photoEntries,
+        totalWords,
+        streak,
+        trophies,
+        trophyCount,
+        unlockedPersonas,
+        selectedPersona,
+        todayDone: dateSet.includes(todayKey),
+        week
+      };
+    }
+
+    function dock(active) {
+      return `
+        <nav class="dock">
+          ${MODULES.map((module) => `
+            <button class="dock-btn ${active === module.id ? 'active' : ''}" data-open="${module.id}">
+              <strong>${module.icon}</strong>
+              <span>${module.label}</span>
+            </button>
+          `).join('')}
+        </nav>
+      `;
+    }
+
+    function topbar(stats) {
+      return `
+        <header class="topbar">
+          <div class="brand">
+            <span class="brand-kicker">Relaxed style • casual living • everyday tips</span>
+            <span class="brand-title">Reflections</span>
+          </div>
+          <div class="meta-block">
+            <span class="meta-issue">Issue 3-1</span>
+            <span>${escapeHtml(niceDate(new Date()))}</span>
+            <span>${escapeHtml(stats.selectedPersona.name)}</span>
+          </div>
+        </header>
+      `;
+    }
+
+    function coverHotspots(persona) {
+      if (persona.coverMode === 'image') {
+        return `
+          <button class="hotspot spot-music" data-open="music" aria-label="Open music"></button>
+          <button class="hotspot spot-write" data-open="write" aria-label="Open write"></button>
+          <button class="hotspot spot-today" data-open="today" aria-label="Open today"></button>
+          <button class="hotspot spot-travel" data-open="travel" aria-label="Open travel"></button>
+          <button class="hotspot spot-style" data-open="style" aria-label="Open style"></button>
+          <button class="hotspot spot-archive" data-open="archive" aria-label="Open archive"></button>
+        `;
+      }
+
+      return `
+        <span class="cover-blob style">STYLE</span>
+        <span class="cover-blob music">MUSIC</span>
+        <span class="cover-blob travel">TRAVEL</span>
+        <button class="hotspot labelled spot-write" data-open="write" aria-label="Open write">WRITE</button>
+        <button class="hotspot spot-music" data-open="music" aria-label="Open music"></button>
+        <button class="hotspot spot-style" data-open="style" aria-label="Open style"></button>
+        <button class="hotspot spot-travel" data-open="travel" aria-label="Open travel"></button>
+        <button class="hotspot spot-archive" data-open="archive" aria-label="Open archive"></button>
+        <button class="hotspot spot-today" data-open="today" aria-label="Open today"></button>
+      `;
+    }
+
+    // Keep the home screen to a pure cover-stage presentation, with object-based entry points and no side copy.
+    function renderCover(stats) {
+      const persona = stats.selectedPersona;
+      const coverHtml = persona.coverMode === 'image'
+        ? `
+            <div class="cover-card cover-default">
+              <img src="${persona.coverSrc}" alt="${escapeHtml(persona.name)}">
+              ${coverHotspots(persona)}
+            </div>
+          `
+        : `
+            <div class="cover-card">
+              <div class="cover-composed">
+                <div class="cover-blue-top">
+                  <div class="cover-mini">Relaxed style • casual living • everyday tips</div>
+                  <div class="cover-logo">CITYBOY</div>
+                </div>
+                <div class="cover-issue">Issue 3-1<br>${escapeHtml(persona.name)}</div>
+                <img class="cover-persona" src="${persona.coverSrc}" alt="${escapeHtml(persona.name)}">
+                <div class="cover-blue-bottom">Live Simple, Dress Well.</div>
+                ${coverHotspots(persona)}
+              </div>
+            </div>
+          `;
+
+      document.getElementById('screen-cover').innerHTML = `
+        <div class="page-shell">
+          <section class="mag-frame">
+            ${topbar(stats)}
+            <div class="cover-scene">
+              ${coverHtml}
+            </div>
+          </section>
+        </div>
+        ${dock('')}
+      `;
+    }
+
+    function renderToday(stats) {
+      const latest = stats.latestEntry;
+      document.getElementById('screen-today').innerHTML = `
+        <div class="page-shell">
+          <section class="mag-frame">
+            ${topbar(stats)}
+            <div class="module-shell">
+              <div class="module-header">
+                <div>
+                  <div class="section-kicker">Today issue</div>
+                  <h1 class="module-title">Magazine cover, then the day opens up.</h1>
+                  <p class="module-copy">首页内容遵循 PRD 的结构，保留今日 lead、音乐、streak 和 archive 摘要，但主界面入口已经收回到 cover。</p>
+                </div>
+                <div class="toolbar-actions">
+                  <button class="ghost-btn" data-open="cover">Back to cover</button>
+                  <button class="solid-btn" data-open="write">Write today</button>
+                </div>
+              </div>
+
+              <div class="today-grid">
+                <article class="panel lead-card">
+                  <div>
+                    <div class="panel-head">
+                      <div>
+                        <div class="section-kicker">Lead story</div>
+                        <div class="panel-title">${latest ? escapeHtml(latest.title) : 'Write the first page of this issue.'}</div>
+                      </div>
+                    </div>
+                    <p class="panel-copy">${latest ? escapeHtml(latest.dek || excerpt(latest.body, 180)) : '当你发布今天这一页，这里会自动更新成最新一期 lead。'}</p>
+                  </div>
+                  <div class="micro-meta">
+                    <span>${stats.entryCount} entries</span>
+                    <span>${stats.streak} day streak</span>
+                    <span>${stats.trophyCount} trophies</span>
+                  </div>
+                </article>
+
+                <article class="panel">
+                  <div class="panel-head">
+                    <div>
+                      <div class="section-kicker">Current soundtrack</div>
+                      <div class="panel-title">${escapeHtml(TRACKS[appState.currentTrack].title)}</div>
+                    </div>
+                  </div>
+                  <p class="panel-copy">${escapeHtml(TRACKS[appState.currentTrack].artist)} · ${escapeHtml(TRACKS[appState.currentTrack].note)}</p>
+                  <div class="progress" style="margin-top:18px;">
+                    <div class="progress-fill" style="width:${appState.musicProgress}%"></div>
+                  </div>
+                  <div class="toolbar-actions" style="margin-top:18px; justify-content:flex-start;">
+                    <button class="ghost-btn" data-open="music">Open music</button>
+                  </div>
+                </article>
+              </div>
+
+              <article class="panel" style="margin-top:16px;">
+                <div class="panel-head">
+                  <div>
+                    <div class="section-kicker">Week streak</div>
+                    <div class="panel-title">Keep the issue alive all week.</div>
+                  </div>
+                </div>
+                <div class="week-list">
+                  ${stats.week.map((day) => `
+                    <div class="week-chip ${day.done ? 'done' : ''} ${day.today ? 'today' : ''}">
+                      <span class="week-num">${day.num}</span>
+                      <span class="week-day">${day.day}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </article>
+
+              <div class="today-grid" style="margin-top:16px;">
+                <article class="panel">
+                  <div class="panel-head">
+                    <div>
+                      <div class="section-kicker">Archive</div>
+                      <div class="panel-title">Recent pages</div>
+                    </div>
+                    <button class="ghost-btn" data-open="archive">Open archive</button>
+                  </div>
+                  <div class="entry-list">
+                    ${stats.entries.slice(0, 2).map((entry) => `
+                      <div class="entry-card">
+                        <div class="entry-meta">
+                          <span>${escapeHtml(entry.template)}</span>
+                          <span>${escapeHtml(niceDate(entry.date))}</span>
+                        </div>
+                        <div class="entry-title">${escapeHtml(entry.title)}</div>
+                        <div class="entry-body">${escapeHtml(excerpt(entry.body, 110))}</div>
+                      </div>
+                    `).join('')}
+                  </div>
+                </article>
+
+                <article class="panel">
+                  <div class="panel-head">
+                    <div>
+                      <div class="section-kicker">Persona</div>
+                      <div class="panel-title">${escapeHtml(stats.selectedPersona.name)}</div>
+                    </div>
+                  </div>
+                  <p class="panel-copy">${escapeHtml(stats.selectedPersona.subtitle)}</p>
+                  <div class="toolbar-actions" style="justify-content:flex-start; margin-top:18px;">
+                    <button class="ghost-btn" data-open="archive">Switch persona</button>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+        </div>
+        ${dock('today')}
+      `;
+    }
+
+    function renderListEditor(draft) {
+      return `
+        <div class="field-card full-span">
+          <div class="field-kicker">List items</div>
+          <div class="list-editor">
+            ${draft.listItems.map((item, index) => `
+              <div class="list-row">
+                <div class="list-index">${index + 1}</div>
+                <div>
+                  <input class="mini-input" data-list-title="${index}" placeholder="List title" value="${escapeHtml(item.title)}">
+                  <textarea class="mini-note" data-list-note="${index}" placeholder="Short supporting note">${escapeHtml(item.note)}</textarea>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          <div class="toolbar-actions" style="justify-content:flex-start; margin-top:14px;">
+            <button class="ghost-btn" data-action="add-list-item">Add item</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // Render different editor structures per template so switching layout changes both the inputs and the reading rhythm.
+    function renderTemplateFields(draft) {
+      if (draft.template === 'editorial') {
+        return `
+          <div class="editor-grid editorial">
+            <div class="field-card">
+              <div class="field-kicker">Headline</div>
+              <textarea class="field-input-title" data-draft-field="title" placeholder="Blue hour, coffee steam,">${escapeHtml(draft.title)}</textarea>
+            </div>
+            <div class="field-card tight">
+              <div class="field-kicker">Dek / subhead</div>
+              <textarea class="field-input-subtitle" data-draft-field="dek" placeholder="Write the line that sets the page mood.">${escapeHtml(draft.dek)}</textarea>
+            </div>
+            <div class="field-card">
+              <div class="field-kicker">Body copy</div>
+              <textarea class="field-input-body" data-draft-field="body" placeholder="记录一段真实的生活切片：穿什么、听什么、经过了什么、为什么值得留下来。">${escapeHtml(draft.body)}</textarea>
+            </div>
+            <div class="field-card">
+              <div class="field-kicker">Pullquote</div>
+              <textarea class="field-input-quote" data-draft-field="pullquote" placeholder="Pick one sentence worth pulling out.">${escapeHtml(draft.pullquote)}</textarea>
+            </div>
+            <div class="field-card hero full-span">
+              <div class="field-kicker" style="position:absolute; left:18px; top:18px;">Photo-led image</div>
+              <div class="upload-stage">
+                ${draft.imageData ? `<img src="${draft.imageData}" alt="Draft image">` : ''}
+                <button class="upload-button" data-action="open-image-picker">${draft.imageData ? 'Replace image' : 'Add photo-led image'}</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (draft.template === 'minimal') {
+        return `
+          <div class="editor-grid minimal">
+            <div class="field-card">
+              <div class="field-kicker">Headline</div>
+              <textarea class="field-input-title" data-draft-field="title" placeholder="Blue hour, coffee steam,">${escapeHtml(draft.title)}</textarea>
+            </div>
+            <div class="field-card tight">
+              <div class="field-kicker">Dek / subhead</div>
+              <textarea class="field-input-subtitle" data-draft-field="dek" placeholder="Write the line that sets the page mood.">${escapeHtml(draft.dek)}</textarea>
+            </div>
+            <div class="field-card">
+              <div class="field-kicker">Body copy</div>
+              <textarea class="field-input-body" data-draft-field="body" placeholder="留白更多，正文更安静，像一页真正可以反复重开的杂志内页。">${escapeHtml(draft.body)}</textarea>
+            </div>
+            <div class="field-card">
+              <div class="field-kicker">Pullquote</div>
+              <textarea class="field-input-quote" data-draft-field="pullquote" placeholder="Pull one sentence that deserves more space.">${escapeHtml(draft.pullquote)}</textarea>
+            </div>
+          </div>
+        `;
+      }
+
+      if (draft.template === 'photo') {
+        return `
+          <div class="editor-grid photo">
+            <div class="field-card hero full-span">
+              <div class="field-kicker" style="position:absolute; left:18px; top:18px;">Hero image</div>
+              <div class="upload-stage">
+                ${draft.imageData ? `<img src="${draft.imageData}" alt="Draft image">` : ''}
+                <button class="upload-button" data-action="open-image-picker">${draft.imageData ? 'Replace hero image' : 'Add hero image'}</button>
+              </div>
+            </div>
+            <div class="field-card tight">
+              <div class="field-kicker">Headline</div>
+              <textarea class="field-input-subtitle" data-draft-field="title" placeholder="A shorter photo-led title">${escapeHtml(draft.title)}</textarea>
+            </div>
+            <div class="field-card tight">
+              <div class="field-kicker">Caption</div>
+              <textarea class="field-input-subtitle" data-draft-field="dek" placeholder="A compact image caption or subhead.">${escapeHtml(draft.dek)}</textarea>
+            </div>
+            <div class="field-card full-span">
+              <div class="field-kicker">Body copy</div>
+              <textarea class="field-input-body" data-draft-field="body" placeholder="Photo-led 页面正文更短，像一段带图的展览说明。">${escapeHtml(draft.body)}</textarea>
+            </div>
+          </div>
+        `;
+      }
+
+      if (draft.template === 'quote') {
+        return `
+          <div class="editor-grid quote">
+            <div class="field-card full-span">
+              <div class="field-kicker">Quote</div>
+              <textarea class="field-input-quote" data-draft-field="pullquote" placeholder="Write the whole page like a quote spread.">${escapeHtml(draft.pullquote)}</textarea>
+            </div>
+            <div class="field-card tight">
+              <div class="field-kicker">Byline</div>
+              <textarea class="field-input-subtitle" data-draft-field="quoteBy" placeholder="Who said it, or what moment it came from.">${escapeHtml(draft.quoteBy)}</textarea>
+            </div>
+            <div class="field-card tight">
+              <div class="field-kicker">Context</div>
+              <textarea class="field-input-subtitle" data-draft-field="dek" placeholder="One short line of context.">${escapeHtml(draft.dek)}</textarea>
+            </div>
+            <div class="field-card full-span">
+              <div class="field-kicker">Reflection</div>
+              <textarea class="field-input-body" data-draft-field="body" placeholder="Optional reflection under the quote.">${escapeHtml(draft.body)}</textarea>
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="editor-grid list">
+          <div class="field-card tight full-span">
+            <div class="field-kicker">List title</div>
+            <textarea class="field-input-subtitle" data-draft-field="title" placeholder="Sunday things worth keeping">${escapeHtml(draft.title)}</textarea>
+          </div>
+          ${renderListEditor(draft)}
+        </div>
+      `;
+    }
+
+    // Match the preview to the chosen template so the user can see the actual editorial layout difference immediately.
+    function renderTemplatePreview(draft) {
+      return renderJournalSheet(
+        {
+          ...draftAsEntry(draft),
+          date: new Date()
+        },
+        'preview'
+      );
+    }
+
+    // The write screen follows the Claude-style dark editor but now changes real structure per layout type.
+    function renderWrite(stats) {
+      const draft = appState.draft;
+      document.getElementById('screen-write').innerHTML = `
+        <div class="page-shell">
+          <section class="mag-frame">
+            ${topbar(stats)}
+            <div class="module-shell">
+              <div class="module-header">
+                <div>
+                  <div class="section-kicker">Write module</div>
+                  <h1 class="module-title">Magazine editor</h1>
+                  <p class="module-copy">模板现在会真正切换 editor 结构和 preview 版式，不再只是换一个名字。</p>
+                </div>
+                <div class="toolbar-actions">
+                  <button class="ghost-btn" data-open="cover">Back to cover</button>
+                  <button class="solid-btn" data-action="publish-entry">Publish this page</button>
+                </div>
+              </div>
+
+              <div class="template-row" style="margin-bottom:18px;">
+                ${TEMPLATES.map((template) => `
+                  <button class="template-btn ${draft.template === template.id ? 'active' : ''}" data-template="${template.id}">
+                    ${escapeHtml(template.label)}
+                  </button>
+                `).join('')}
+              </div>
+
+              <div class="write-grid">
+                <div class="write-column">
+                  ${renderTemplateFields(draft)}
+                </div>
+
+                <aside class="write-column">
+                  <div class="panel">
+                    <div class="field-kicker">Mood</div>
+                    <div class="mood-row" style="margin-top:12px;">
+                      ${MOODS.map((mood) => `
+                        <button class="mood-btn ${draft.mood === mood.id ? 'active' : ''}" data-mood="${mood.id}">
+                          <span>${mood.emoji}</span>
+                          <span>${escapeHtml(mood.label)}</span>
+                        </button>
+                      `).join('')}
+                    </div>
+                  </div>
+
+                  <div class="panel">
+                    <div class="field-kicker">Music link</div>
+                    <label class="switch-row" style="margin-top:12px;">
+                      <div>
+                        <div class="panel-copy">保存时自动把当前曲目附到这篇条目。</div>
+                      </div>
+                      <input type="checkbox" data-draft-field="linkMusic" ${draft.linkMusic ? 'checked' : ''}>
+                    </label>
+                  </div>
+
+                  <div class="panel">
+                    <div class="field-kicker">Journal cover</div>
+                    <div class="cover-row" style="margin-top:12px;">
+                      ${JOURNAL_COVERS.map((cover) => `
+                        <button class="cover-choice ${draft.coverAsset === cover.id ? 'active' : ''}" data-cover-choice="${cover.id}">
+                          ${cover.src ? `<img src="${cover.src}" alt="${escapeHtml(cover.label)}">` : ''}
+                          <span>${escapeHtml(cover.label)}</span>
+                        </button>
+                      `).join('')}
+                    </div>
+                  </div>
+
+                  <div class="panel">
+                    <div class="field-kicker">Current soundtrack</div>
+                    <div class="panel-title" style="margin-top:10px;">${escapeHtml(TRACKS[appState.currentTrack].title)}</div>
+                    <div class="panel-copy">${escapeHtml(TRACKS[appState.currentTrack].artist)} · ${escapeHtml(TRACKS[appState.currentTrack].note)}</div>
+                  </div>
+
+                  <div class="preview-panel">
+                    <div class="panel">
+                      <div class="field-kicker">Layout preview</div>
+                      <div style="margin-top:14px;">
+                        ${renderTemplatePreview(draft)}
+                      </div>
+                    </div>
+                    <button class="solid-btn" data-action="publish-entry">Publish this page</button>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </section>
+        </div>
+        ${dock('write')}
+      `;
+    }
+
+    function renderMusic(stats) {
+      const currentTrack = TRACKS[appState.currentTrack];
+      document.getElementById('screen-music').innerHTML = `
+        <div class="page-shell">
+          <section class="mag-frame">
+            ${topbar(stats)}
+            <div class="module-shell">
+              <div class="module-header">
+                <div>
+                  <div class="section-kicker">Music module</div>
+                  <h1 class="module-title">Soundtrack shelf</h1>
+                  <p class="module-copy">音乐模块保持 PRD 里的 now playing + 情绪标签 + 歌曲与日记关联。</p>
+                </div>
+                <div class="toolbar-actions">
+                  <button class="ghost-btn" data-open="cover">Back to cover</button>
+                  <button class="solid-btn" data-open="write">Link in journal</button>
+                </div>
+              </div>
+
+              <div class="music-grid">
+                <article class="panel player-card">
+                  <div class="section-kicker">Now playing</div>
+                  <div class="panel-title">${escapeHtml(currentTrack.title)}</div>
+                  <div class="panel-copy">${escapeHtml(currentTrack.artist)} · ${escapeHtml(currentTrack.note)}</div>
+                  <div class="progress">
+                    <div class="progress-fill" style="width:${appState.musicProgress}%"></div>
+                  </div>
+                  <div class="toolbar-actions" style="justify-content:flex-start;">
+                    <button class="ghost-btn" data-action="toggle-play">${playTimer ? 'Pause demo' : 'Play demo'}</button>
+                    <button class="ghost-btn" data-action="next-track">Next track</button>
+                  </div>
+                </article>
+
+                <article class="panel">
+                  <div class="section-kicker">Track list</div>
+                  <div class="track-list" style="margin-top:14px;">
+                    ${TRACKS.map((track, index) => `
+                      <button class="track-card ${index === appState.currentTrack ? 'active' : ''}" data-track-index="${index}">
+                        <div class="entry-meta">
+                          <span>Track ${index + 1}</span>
+                          <span>${escapeHtml(track.duration)}</span>
+                        </div>
+                        <div class="entry-title">${escapeHtml(track.title)}</div>
+                        <div class="entry-body">${escapeHtml(track.artist)} · ${escapeHtml(track.mood)} · ${escapeHtml(track.note)}</div>
+                      </button>
+                    `).join('')}
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+        </div>
+        ${dock('music')}
+      `;
+    }
+
+    function renderStyle(stats) {
+      document.getElementById('screen-style').innerHTML = `
+        <div class="page-shell">
+          <section class="mag-frame">
+            ${topbar(stats)}
+            <div class="module-shell">
+              <div class="module-header">
+                <div>
+                  <div class="section-kicker">Style notebook</div>
+                  <h1 class="module-title">Lookbook notes</h1>
+                  <p class="module-copy">这里保留轻量的 style 模块，用来记 outfit formula、配色和想保留的版式感觉。</p>
+                </div>
+                <div class="toolbar-actions">
+                  <button class="ghost-btn" data-open="cover">Back to cover</button>
+                  <button class="solid-btn" data-open="write">Turn into entry</button>
+                </div>
+              </div>
+
+              <div class="notes-grid">
+                <article class="panel">
+                  <div class="section-kicker">New note</div>
+                  <div class="note-form" style="margin-top:14px;">
+                    <input class="note-input" data-note-field="style-title" placeholder="e.g. Weekend uniform" value="${escapeHtml(appState.styleDraft.title)}">
+                    <textarea class="note-textarea" data-note-field="style-note" placeholder="Write about fit, silhouette, fabrics, props, or one image composition worth keeping.">${escapeHtml(appState.styleDraft.note)}</textarea>
+                    <button class="solid-btn" data-action="add-style-note">Save style note</button>
+                  </div>
+                </article>
+
+                <article class="panel">
+                  <div class="section-kicker">Saved notes</div>
+                  <div class="note-list" style="margin-top:14px;">
+                    ${appState.styleNotes.map((note) => `
+                      <div class="note-card">
+                        <div class="entry-title">${escapeHtml(note.title)}</div>
+                        <div class="entry-body">${escapeHtml(note.note)}</div>
+                      </div>
+                    `).join('')}
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+        </div>
+        ${dock('style')}
+      `;
+    }
+
+    function renderTravel(stats) {
+      document.getElementById('screen-travel').innerHTML = `
+        <div class="page-shell">
+          <section class="mag-frame">
+            ${topbar(stats)}
+            <div class="module-shell">
+              <div class="module-header">
+                <div>
+                  <div class="section-kicker">Travel notebook</div>
+                  <h1 class="module-title">Small routes and city notes</h1>
+                  <p class="module-copy">travel 先保持成 city radius notebook，记录路线、街区和想再去的地方。</p>
+                </div>
+                <div class="toolbar-actions">
+                  <button class="ghost-btn" data-open="cover">Back to cover</button>
+                  <button class="solid-btn" data-open="write">Write travel page</button>
+                </div>
+              </div>
+
+              <div class="notes-grid">
+                <article class="panel">
+                  <div class="section-kicker">New route note</div>
+                  <div class="note-form" style="margin-top:14px;">
+                    <input class="note-input" data-note-field="travel-title" placeholder="e.g. Riverside route" value="${escapeHtml(appState.travelDraft.title)}">
+                    <textarea class="note-textarea" data-note-field="travel-note" placeholder="One route, one neighbourhood feeling, or one place worth revisiting.">${escapeHtml(appState.travelDraft.note)}</textarea>
+                    <button class="solid-btn" data-action="add-travel-note">Save route note</button>
+                  </div>
+                </article>
+
+                <article class="panel">
+                  <div class="section-kicker">Saved route notes</div>
+                  <div class="note-list" style="margin-top:14px;">
+                    ${appState.travelNotes.map((note) => `
+                      <div class="note-card">
+                        <div class="entry-title">${escapeHtml(note.title)}</div>
+                        <div class="entry-body">${escapeHtml(note.note)}</div>
+                      </div>
+                    `).join('')}
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+        </div>
+        ${dock('travel')}
+      `;
+    }
+
+    // Wire trophy progress to persona selection so the new reference art can already be switched in-app.
+    function renderArchive(stats) {
+      const entries = getArchiveEntries(stats);
+      const selectedEntry = getSelectedArchiveEntry(stats);
+      const selectedIndex = selectedEntry ? entries.findIndex((entry) => entry.id === selectedEntry.id) : -1;
+      const nextEntry = selectedIndex >= 0 ? entries[selectedIndex + 1] || null : null;
+
+      document.getElementById('screen-archive').innerHTML = `
+        <div class="page-shell">
+          <section class="mag-frame">
+            ${topbar(stats)}
+            <div class="module-shell">
+              <div class="module-header">
+                <div>
+                  <div class="section-kicker">Archive module</div>
+                  <h1 class="module-title">Trophies, personas, saved pages</h1>
+                  <p class="module-copy">新 persona 已接进角色切换。默认角色用原封面图，新增角色会切换成新的封面人物版本。</p>
+                </div>
+                <div class="toolbar-actions">
+                  <button class="ghost-btn" data-open="cover">Back to cover</button>
+                  <button class="solid-btn" data-open="write">Write for next trophy</button>
+                </div>
+              </div>
+
+              <div class="archive-tabs">
+                <button class="archive-tab ${appState.archive.view === 'gallery' ? 'active' : ''}" data-archive-view="gallery">Gallery view</button>
+                <button class="archive-tab ${appState.archive.view === 'book' ? 'active' : ''}" data-archive-view="book">Book view</button>
+              </div>
+
+              <article class="panel">
+                <div class="panel-head">
+                  <div>
+                    <div class="section-kicker">Persona switcher</div>
+                    <div class="panel-title">Selectable cover characters</div>
+                  </div>
+                </div>
+                <div class="character-list" style="margin-top:14px;">
+                  ${PERSONAS.map((persona) => {
+                    const unlocked = stats.trophyCount >= persona.unlock;
+                    const selected = stats.selectedPersona.id === persona.id;
+                    return `
+                      <div class="character-card ${unlocked ? '' : 'locked'}">
+                        <img src="${persona.coverMode === 'image' ? 'Mainvisual.png' : persona.coverSrc}" alt="${escapeHtml(persona.name)}">
+                        <div class="entry-title">${escapeHtml(persona.name)}</div>
+                        <div class="entry-body">${escapeHtml(persona.subtitle)}</div>
+                        <div class="toolbar-actions" style="justify-content:flex-start; margin-top:12px;">
+                          <span class="status-chip ${selected ? 'active' : unlocked ? 'unlocked' : 'locked'}">${selected ? 'Current' : unlocked ? 'Unlocked' : 'Need ' + persona.unlock}</span>
+                          <button class="${unlocked ? 'ghost-btn' : 'ghost-btn'}" data-persona="${persona.id}">
+                            ${selected ? 'Selected' : unlocked ? 'Use persona' : 'Locked'}
+                          </button>
+                        </div>
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
+              </article>
+
+              <div class="notes-grid" style="margin-top:16px;">
+                <article class="panel">
+                  <div class="section-kicker">Trophy wall</div>
+                  <div class="entry-list" style="margin-top:14px;">
+                    ${stats.trophies.map((trophy) => `
+                      <div class="entry-card" style="${trophy.isUnlocked ? '' : 'opacity:0.55;'}">
+                        <div class="entry-meta">
+                          <span>${trophy.isUnlocked ? 'Unlocked' : 'Locked'}</span>
+                          <span>${escapeHtml(trophy.id)}</span>
+                        </div>
+                        <div class="entry-title">${escapeHtml(trophy.title)}</div>
+                        <div class="entry-body">${escapeHtml(trophy.description)}</div>
+                      </div>
+                    `).join('')}
+                  </div>
+                </article>
+
+                <article class="panel">
+                  <div class="section-kicker">Saved pages</div>
+                  ${appState.archive.view === 'gallery' ? `
+                    <div class="archive-gallery" style="margin-top:14px;">
+                      ${entries.map((entry) => `
+                        <div class="gallery-card ${selectedEntry && selectedEntry.id === entry.id ? 'active' : ''}" data-entry-id="${entry.id}" role="button" tabindex="0">
+                          ${renderJournalSheet(entry, 'preview')}
+                          <div>
+                            <div class="entry-meta">
+                              <span>${escapeHtml(entry.template)}</span>
+                              <span>${escapeHtml(niceDate(entry.date))}</span>
+                            </div>
+                            <div class="entry-title">${escapeHtml(entry.title)}</div>
+                            <div class="entry-body">${escapeHtml(excerpt(entry.body, 100))}</div>
+                          </div>
+                        </div>
+                      `).join('')}
+                    </div>
+                  ` : `
+                    <div class="book-stage" style="margin-top:14px;">
+                      <aside class="book-sidebar">
+                        ${selectedEntry ? `
+                          <div class="entry-card">
+                            <div class="entry-meta">
+                              <span>${escapeHtml(selectedEntry.template)}</span>
+                              <span>${escapeHtml(niceDate(selectedEntry.date))}</span>
+                              <span>${selectedEntry.wordCount} words</span>
+                            </div>
+                            <div class="entry-title">${escapeHtml(selectedEntry.title)}</div>
+                            <div class="entry-body">${escapeHtml(excerpt(selectedEntry.body, 140))}</div>
+                          </div>
+                          <div class="toolbar-actions" style="justify-content:flex-start;">
+                            <button class="ghost-btn" data-entry-nav="-1">Newer page</button>
+                            <button class="ghost-btn" data-entry-nav="1">Older page</button>
+                          </div>
+                        ` : `
+                          <div class="entry-card">
+                            <div class="entry-title">No page yet</div>
+                            <div class="entry-body">Publish a page to start your journal bookshelf.</div>
+                          </div>
+                        `}
+                        <div class="entry-list">
+                          ${entries.map((entry) => `
+                            <div class="entry-card ${selectedEntry && selectedEntry.id === entry.id ? 'active' : ''}" data-entry-id="${entry.id}" role="button" tabindex="0" style="text-align:left;">
+                              <div class="entry-meta">
+                                <span>${escapeHtml(entry.template)}</span>
+                                <span>${escapeHtml(niceDate(entry.date))}</span>
+                              </div>
+                              <div class="entry-title">${escapeHtml(entry.title)}</div>
+                            </div>
+                          `).join('')}
+                        </div>
+                      </aside>
+
+                      <div class="book-spread">
+                        <div class="book-pages">
+                          ${selectedEntry ? renderJournalSheet(selectedEntry, 'book') : '<div class="book-placeholder">No selected entry.</div>'}
+                          ${nextEntry ? renderJournalSheet(nextEntry, 'book') : '<div class="book-placeholder">Endpaper<br>Flip forward after you publish the next page.</div>'}
+                        </div>
+                      </div>
+                    </div>
+                  `}
+                </article>
+              </div>
+            </div>
+          </section>
+        </div>
+        ${dock('archive')}
+      `;
+    }
+
+    function renderAll() {
+      const stats = deriveStats(appState);
+      renderCover(stats);
+      renderToday(stats);
+      renderWrite(stats);
+      renderMusic(stats);
+      renderStyle(stats);
+      renderTravel(stats);
+      renderArchive(stats);
+      setScreen(currentScreen);
+    }
+
+    function setScreen(screen) {
+      currentScreen = screen;
+      document.querySelectorAll('.screen').forEach((element) => {
+        element.classList.toggle('active', element.id === 'screen-' + screen);
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2200);
+    }
+
+    function updateDraft(field, value) {
+      appState.draft[field] = value;
+      saveState();
+    }
+
+    // Keep the list template editable by storing each row as structured draft data instead of flattening it into body text.
+    function updateListItem(index, key, value) {
+      if (!appState.draft.listItems[index]) {
+        appState.draft.listItems[index] = { title: '', note: '' };
+      }
+      appState.draft.listItems[index][key] = value;
+      saveState();
+    }
+
+    function addListItem() {
+      appState.draft.listItems.push({ title: '', note: '' });
+      saveState();
+      renderAll();
+      setScreen('write');
+    }
+
+    function setCoverChoice(coverId) {
+      appState.draft.coverAsset = coverId;
+      saveState();
+      renderAll();
+      setScreen('write');
+    }
+
+    function setArchiveView(view) {
+      appState.archive.view = view;
+      saveState();
+      renderAll();
+      setScreen('archive');
+    }
+
+    function selectArchiveEntry(entryId) {
+      appState.archive.selectedEntryId = entryId;
+      saveState();
+      renderAll();
+      setScreen('archive');
+    }
+
+    function stepArchiveEntry(delta) {
+      const stats = deriveStats(appState);
+      const entries = getArchiveEntries(stats);
+      if (!entries.length) {
+        return;
+      }
+
+      const current = getSelectedArchiveEntry(stats);
+      const index = current ? entries.findIndex((entry) => entry.id === current.id) : 0;
+      const nextIndex = Math.min(entries.length - 1, Math.max(0, index + delta));
+      appState.archive.selectedEntryId = entries[nextIndex].id;
+      saveState();
+      renderAll();
+      setScreen('archive');
+    }
+
+    function addNote(type) {
+      const draftKey = type + 'Draft';
+      const listKey = type === 'style' ? 'styleNotes' : 'travelNotes';
+      const title = appState[draftKey].title.trim();
+      const note = appState[draftKey].note.trim();
+
+      if (!title || !note) {
+        showToast('先写一个标题和内容。');
+        return;
+      }
+
+      appState[listKey].unshift({
+        id: nextId(type),
+        title,
+        note
+      });
+      appState[draftKey] = { title: '', note: '' };
+      saveState();
+      renderAll();
+      setScreen(type === 'style' ? 'style' : 'travel');
+      showToast(type === 'style' ? 'Style note saved.' : 'Travel note saved.');
+    }
+
+    function draftToWordCount(draft) {
+      if (draft.template === 'list') {
+        return draft.listItems.reduce((sum, item) => sum + wordCount(item.title) + wordCount(item.note), 0);
+      }
+      if (draft.template === 'quote') {
+        return wordCount(draft.pullquote) + wordCount(draft.body) + wordCount(draft.quoteBy);
+      }
+      return wordCount(draft.title) + wordCount(draft.dek) + wordCount(draft.body) + wordCount(draft.pullquote);
+    }
+
+    // Publish the current layout-aware draft, then recompute trophies and persona unlock status from the archive.
+    function publishEntry() {
+      const draft = appState.draft;
+      const titleSource = draft.template === 'quote' ? (draft.pullquote || draft.dek) : draft.title;
+      const bodySource = draft.template === 'list'
+        ? draft.listItems.map((item) => (item.title + ' ' + item.note).trim()).filter(Boolean).join(' ')
+        : draft.body || draft.pullquote;
+
+      if (!titleSource.trim() || !bodySource.trim()) {
+        showToast('当前版式还需要至少一个标题和正文。');
+        return;
+      }
+
+      const before = deriveStats(appState);
+      const now = new Date();
+      const linkedTrack = draft.linkMusic ? TRACKS[appState.currentTrack].title : '';
+
+      const newEntry = {
+        id: nextId('entry'),
+        date: isoDate(now),
+        createdAt: now.toISOString(),
+        template: draft.template,
+        mood: draft.mood,
+        title: titleSource.trim(),
+        dek: draft.dek.trim(),
+        body: bodySource.trim(),
+        pullquote: draft.pullquote.trim(),
+        imageData: draft.imageData,
+        linkMusic: draft.linkMusic,
+        linkedTrack,
+        quoteBy: draft.quoteBy.trim(),
+        coverAsset: draft.coverAsset,
+        listItems: draft.listItems.map((item) => ({ title: item.title, note: item.note })),
+        wordCount: draftToWordCount(draft)
+      };
+
+      appState.entries.unshift(newEntry);
+      appState.archive.view = 'book';
+      appState.archive.selectedEntryId = newEntry.id;
+
+      appState.draft = {
+        ...defaultDraft(),
+        template: draft.template,
+        mood: draft.mood,
+        coverAsset: draft.coverAsset
+      };
+      saveState();
+
+      const after = deriveStats(appState);
+      renderAll();
+      setScreen('archive');
+
+      if (after.trophyCount > before.trophyCount) {
+        showToast('Published. New trophy unlocked.');
+        return;
+      }
+
+      showToast('Published to the archive.');
+    }
+
+    function choosePersona(personaId) {
+      const stats = deriveStats(appState);
+      const persona = getPersona(personaId);
+
+      if (stats.trophyCount < persona.unlock) {
+        showToast('还差 ' + (persona.unlock - stats.trophyCount) + ' 枚奖杯。');
+        return;
+      }
+
+      appState.profile.selectedPersona = personaId;
+      saveState();
+      renderAll();
+      setScreen('cover');
+      showToast(persona.name + ' selected.');
+    }
+
+    // Demo playback only animates the progress bar and rotates the active track to keep the prototype lightweight.
+    function togglePlay() {
+      if (playTimer) {
+        clearInterval(playTimer);
+        playTimer = null;
+        renderAll();
+        setScreen('music');
+        return;
+      }
+
+      playTimer = setInterval(() => {
+        appState.musicProgress += 3;
+        if (appState.musicProgress >= 100) {
+          appState.musicProgress = 0;
+          appState.currentTrack = (appState.currentTrack + 1) % TRACKS.length;
+        }
+        saveState();
+        if (currentScreen === 'music') {
+          renderAll();
+          setScreen('music');
+        }
+      }, 900);
+
+      renderAll();
+      setScreen('music');
+    }
+
+    function selectTrack(index) {
+      appState.currentTrack = index;
+      appState.musicProgress = 22;
+      saveState();
+      renderAll();
+      setScreen('music');
+      showToast('Track selected for today.');
+    }
+
+    function handleImage(file) {
+      if (!file) {
+        return;
+      }
+
+      if (!file.type || !file.type.startsWith('image/')) {
+        showToast('请选择图片文件。');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        appState.draft.imageData = reader.result;
+        saveState();
+        renderAll();
+        setScreen('write');
+        showToast('Image added to the draft.');
+      };
+      reader.onerror = () => {
+        showToast('图片读取失败，请再试一次。');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    document.addEventListener('click', (event) => {
+      const openTarget = event.target.closest('[data-open]');
+      if (openTarget) {
+        setScreen(openTarget.getAttribute('data-open'));
+        return;
+      }
+
+      const templateTarget = event.target.closest('[data-template]');
+      if (templateTarget) {
+        appState.draft.template = templateTarget.getAttribute('data-template');
+        saveState();
+        renderAll();
+        setScreen('write');
+        return;
+      }
+
+      const moodTarget = event.target.closest('[data-mood]');
+      if (moodTarget) {
+        appState.draft.mood = moodTarget.getAttribute('data-mood');
+        saveState();
+        renderAll();
+        setScreen('write');
+        return;
+      }
+
+      const coverTarget = event.target.closest('[data-cover-choice]');
+      if (coverTarget) {
+        setCoverChoice(coverTarget.getAttribute('data-cover-choice'));
+        return;
+      }
+
+      const archiveViewTarget = event.target.closest('[data-archive-view]');
+      if (archiveViewTarget) {
+        setArchiveView(archiveViewTarget.getAttribute('data-archive-view'));
+        return;
+      }
+
+      const entryTarget = event.target.closest('[data-entry-id]');
+      if (entryTarget) {
+        selectArchiveEntry(entryTarget.getAttribute('data-entry-id'));
+        return;
+      }
+
+      const entryNavTarget = event.target.closest('[data-entry-nav]');
+      if (entryNavTarget) {
+        stepArchiveEntry(Number(entryNavTarget.getAttribute('data-entry-nav')));
+        return;
+      }
+
+      const trackTarget = event.target.closest('[data-track-index]');
+      if (trackTarget) {
+        selectTrack(Number(trackTarget.getAttribute('data-track-index')));
+        return;
+      }
+
+      const personaTarget = event.target.closest('[data-persona]');
+      if (personaTarget) {
+        choosePersona(personaTarget.getAttribute('data-persona'));
+        return;
+      }
+
+      const actionTarget = event.target.closest('[data-action]');
+      if (!actionTarget) {
+        return;
+      }
+
+      const action = actionTarget.getAttribute('data-action');
+      if (action === 'publish-entry') {
+        publishEntry();
+      } else if (action === 'toggle-play') {
+        togglePlay();
+      } else if (action === 'next-track') {
+        selectTrack((appState.currentTrack + 1) % TRACKS.length);
+      } else if (action === 'open-image-picker') {
+        document.getElementById('draft-image-input').click();
+      } else if (action === 'add-style-note') {
+        addNote('style');
+      } else if (action === 'add-travel-note') {
+        addNote('travel');
+      } else if (action === 'add-list-item') {
+        addListItem();
+      }
+    });
+
+    document.addEventListener('input', (event) => {
+      const field = event.target.getAttribute('data-draft-field');
+      if (field) {
+        const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+        updateDraft(field, value);
+        return;
+      }
+
+      const listTitle = event.target.getAttribute('data-list-title');
+      if (listTitle !== null) {
+        updateListItem(Number(listTitle), 'title', event.target.value);
+        return;
+      }
+
+      const listNote = event.target.getAttribute('data-list-note');
+      if (listNote !== null) {
+        updateListItem(Number(listNote), 'note', event.target.value);
+        return;
+      }
+
+      const noteField = event.target.getAttribute('data-note-field');
+      if (!noteField) {
+        return;
+      }
+
+      if (noteField === 'style-title') {
+        appState.styleDraft.title = event.target.value;
+      } else if (noteField === 'style-note') {
+        appState.styleDraft.note = event.target.value;
+      } else if (noteField === 'travel-title') {
+        appState.travelDraft.title = event.target.value;
+      } else if (noteField === 'travel-note') {
+        appState.travelDraft.note = event.target.value;
+      }
+
+      saveState();
+    });
+
+    document.getElementById('draft-image-input').addEventListener('change', (event) => {
+      handleImage(event.target.files && event.target.files[0]);
+      event.target.value = '';
+    });
+
+    renderAll();
+  </script>
+</body>
+</html>
