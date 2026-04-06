@@ -595,6 +595,236 @@
       grid-template-columns: 1.2fr 0.8fr;
     }
 
+    .today-editorial {
+      background: #F3ECDD;
+      color: #191510;
+      min-height: calc(100vh - 132px);
+    }
+
+    .today-hero {
+      min-height: 170px;
+      padding: 26px 34px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: start;
+      background: #16130F;
+      color: #F4EBDD;
+      border-bottom: 1px solid rgba(25, 21, 16, 0.08);
+    }
+
+    .today-hero-quote {
+      margin-top: 8px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-style: italic;
+      max-width: 18ch;
+    }
+
+    .today-hero-copy {
+      margin-top: 12px;
+      color: rgba(244, 235, 221, 0.64);
+      font-size: 13px;
+    }
+
+    .today-hero-meta {
+      display: grid;
+      justify-items: end;
+      gap: 12px;
+      text-align: right;
+    }
+
+    .today-issue-no {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 9vw, 5rem);
+      line-height: 0.84;
+      letter-spacing: -0.06em;
+      opacity: 0.14;
+    }
+
+    .today-board {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid rgba(25, 21, 16, 0.08);
+    }
+
+    .today-block {
+      min-height: 106px;
+      padding: 18px 18px 16px;
+      border-right: 1px solid rgba(25, 21, 16, 0.08);
+      border-bottom: 1px solid rgba(25, 21, 16, 0.08);
+      display: grid;
+      align-content: space-between;
+      gap: 12px;
+    }
+
+    .today-block:last-child {
+      border-right: none;
+    }
+
+    .today-block.cream {
+      background: #F3ECDD;
+      color: #191510;
+    }
+
+    .today-block.ink {
+      background: #16130F;
+      color: #F4EBDD;
+    }
+
+    .today-block.sage {
+      background: #8EA486;
+      color: #FAF5E9;
+    }
+
+    .today-block.rust {
+      background: #C87240;
+      color: #FAF5E9;
+    }
+
+    .today-block.gold {
+      background: #D1A93B;
+      color: #FFF9EE;
+    }
+
+    .today-span-2 {
+      grid-column: span 2;
+    }
+
+    .today-kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.54;
+    }
+
+    .today-block-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 2.3vw, 1.9rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .today-block-copy {
+      font-size: 13px;
+      color: inherit;
+      opacity: 0.72;
+    }
+
+    .today-music-mini {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .today-mini-embed {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #1C1A16;
+      border: 1px solid rgba(25, 21, 16, 0.08);
+    }
+
+    .today-mini-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      transform: scale(2.4);
+      transform-origin: top left;
+      pointer-events: none;
+    }
+
+    .today-mini-embed .music-preview-art {
+      min-height: 100%;
+      height: 100%;
+      padding: 6px;
+      border-radius: 8px;
+    }
+
+    .today-mini-embed .music-preview-platform {
+      font-size: 6px;
+    }
+
+    .today-mini-embed .music-preview-type {
+      font-size: 0.78rem;
+    }
+
+    .today-streak-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 0.9;
+      text-align: center;
+    }
+
+    .today-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .today-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(25, 21, 16, 0.14);
+    }
+
+    .today-dots span.on {
+      background: #E87A3B;
+    }
+
+    .today-character {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 14px;
+      align-items: end;
+    }
+
+    .today-character img {
+      width: 54px;
+      height: 76px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid rgba(244, 235, 221, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .today-moods {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      font-size: 1.15rem;
+    }
+
+    .today-entry-arrow {
+      justify-self: end;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.45;
+    }
+
+    .today-action {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .today-action .today-block-title {
+      font-size: 1rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-family: 'Space Mono', monospace;
+    }
+
     .lead-card {
       min-height: 270px;
       display: grid;
@@ -1000,19 +1230,47 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 3;
+      z-index: 4;
       pointer-events: none;
+      mix-blend-mode: multiply;
     }
 
     .journal-sheet-frame.frame-deco {
-      mix-blend-mode: screen;
-      opacity: 0.92;
+      opacity: 0.9;
+    }
+
+    .journal-sheet-underlay {
+      position: absolute;
+      inset: 11% 10% 9%;
+      z-index: 1;
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(35, 28, 23, 0.06);
+    }
+
+    .journal-sheet.has-cover.cover-deco .journal-sheet-underlay {
+      inset: 12% 11% 10%;
+      border-radius: 18px;
+    }
+
+    .journal-sheet.has-cover.cover-deco2 .journal-sheet-underlay {
+      inset: 11% 11% 10%;
+      border-radius: 26px;
+    }
+
+    .journal-sheet-underlay img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.22);
     }
 
     .journal-sheet-content {
       position: absolute;
       inset: 13% 10% 9%;
-      z-index: 1;
+      z-index: 2;
       display: grid;
       gap: 12px;
       align-content: start;
@@ -1165,6 +1423,7 @@
       border: 1px solid var(--line);
       background: rgba(255, 255, 255, 0.02);
       text-align: left;
+      cursor: pointer;
     }
 
     .gallery-card.active {
@@ -1179,14 +1438,9 @@
 
     .book-stage {
       display: grid;
-      grid-template-columns: 320px 1fr;
+      grid-template-columns: 1fr;
       gap: 16px;
       align-items: start;
-    }
-
-    .book-sidebar {
-      display: grid;
-      gap: 12px;
     }
 
     .book-spread {
@@ -1201,6 +1455,234 @@
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       align-items: start;
+    }
+
+    .paper-book-theater {
+      position: relative;
+      min-height: 820px;
+      border-radius: 32px;
+      overflow: hidden;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent),
+        #485074;
+      perspective: 2400px;
+      padding: 90px 28px 110px;
+    }
+
+    .paper-book-count {
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #F6C748;
+      letter-spacing: 0.02em;
+      z-index: 4;
+    }
+
+    .paper-book-title {
+      position: absolute;
+      top: 54px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 4;
+    }
+
+    .paper-book-title h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .paper-book-title p {
+      margin-top: 6px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .paper-stack {
+      position: absolute;
+      top: 18%;
+      bottom: 18%;
+      width: 33%;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      opacity: 0.95;
+    }
+
+    .paper-stack.left {
+      left: -3%;
+      transform: rotateY(60deg) rotateZ(-7deg);
+      transform-origin: right center;
+    }
+
+    .paper-stack.right {
+      right: -3%;
+      transform: rotateY(-60deg) rotateZ(7deg);
+      transform-origin: left center;
+    }
+
+    .paper-stack.left.second {
+      left: 4%;
+      top: 21%;
+      bottom: 21%;
+      width: 27%;
+      opacity: 0.72;
+    }
+
+    .paper-stack.right.second {
+      right: 4%;
+      top: 21%;
+      bottom: 21%;
+      width: 27%;
+      opacity: 0.72;
+    }
+
+    .paper-book-center {
+      position: relative;
+      z-index: 3;
+      width: min(900px, calc(100% - 40px));
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: center;
+      transform-style: preserve-3d;
+    }
+
+    .paper-book-center.flip-next .paper-leaf.right {
+      animation: flip-right-page 0.68s cubic-bezier(0.2, 0.72, 0.16, 1);
+    }
+
+    .paper-book-center.flip-prev .paper-leaf.left {
+      animation: flip-left-page 0.68s cubic-bezier(0.2, 0.72, 0.16, 1);
+    }
+
+    .paper-leaf {
+      position: relative;
+      min-height: 700px;
+      padding: 14px;
+      transform-style: preserve-3d;
+    }
+
+    .paper-leaf.left {
+      transform: rotateY(18deg);
+      transform-origin: right center;
+      margin-right: -20px;
+    }
+
+    .paper-leaf.right {
+      transform: rotateY(-18deg);
+      transform-origin: left center;
+      margin-left: -20px;
+    }
+
+    .paper-leaf::after {
+      content: '';
+      position: absolute;
+      top: 4%;
+      bottom: 4%;
+      width: 14px;
+      z-index: 3;
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.02));
+      filter: blur(6px);
+      opacity: 0.28;
+    }
+
+    .paper-leaf.left::after {
+      right: -7px;
+    }
+
+    .paper-leaf.right::after {
+      left: -7px;
+      transform: scaleX(-1);
+    }
+
+    .paper-leaf .journal-sheet {
+      min-height: 680px;
+      border-radius: 22px;
+      box-shadow: 0 24px 34px rgba(0, 0, 0, 0.18);
+    }
+
+    .paper-book-nav {
+      position: absolute;
+      inset: auto 0 24px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      z-index: 4;
+    }
+
+    .book-thumb-strip {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      margin-top: 16px;
+      padding-bottom: 4px;
+    }
+
+    .book-thumb-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .book-thumb {
+      min-width: 120px;
+      width: 120px;
+      display: grid;
+      gap: 8px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .book-thumb .journal-sheet {
+      min-height: 170px;
+      border-radius: 18px;
+      box-shadow: none;
+    }
+
+    .book-thumb.active {
+      opacity: 1;
+    }
+
+    .book-thumb:not(.active) {
+      opacity: 0.62;
+    }
+
+    @keyframes flip-right-page {
+      0% {
+        transform: rotateY(-18deg) translateX(0) scale(1);
+      }
+      35% {
+        transform: rotateY(-78deg) translateX(12px) scale(0.98);
+      }
+      100% {
+        transform: rotateY(-18deg) translateX(0) scale(1);
+      }
+    }
+
+    @keyframes flip-left-page {
+      0% {
+        transform: rotateY(18deg) translateX(0) scale(1);
+      }
+      35% {
+        transform: rotateY(78deg) translateX(-12px) scale(0.98);
+      }
+      100% {
+        transform: rotateY(18deg) translateX(0) scale(1);
+      }
     }
 
     .book-placeholder {
@@ -1288,19 +1770,264 @@
       color: rgba(244, 235, 221, 0.4);
     }
 
-    .music-grid {
-      grid-template-columns: 0.95fr 1.05fr;
-    }
-
-    .player-card {
+    .music-attach-box {
       display: grid;
-      gap: 16px;
-      background: linear-gradient(140deg, rgba(110, 143, 184, 0.18), rgba(29, 24, 21, 0.4)), var(--panel);
+      gap: 12px;
+      margin-top: 12px;
     }
 
-    .track-card.active {
-      background: rgba(110, 143, 184, 0.12);
-      border-color: rgba(110, 143, 184, 0.34);
+    .music-url-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--cream);
+      font-size: 13px;
+    }
+
+    .music-url-input::placeholder {
+      color: rgba(244, 235, 221, 0.36);
+    }
+
+    .music-preview-card {
+      display: grid;
+      grid-template-columns: 184px 1fr;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 26px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent),
+        rgba(255, 255, 255, 0.02);
+      overflow: hidden;
+      min-height: 184px;
+      align-items: stretch;
+    }
+
+    .music-preview-card.compact {
+      grid-template-columns: 92px 1fr;
+      min-height: 112px;
+      padding: 12px;
+      border-radius: 22px;
+    }
+
+    .music-preview-card.has-embed {
+      grid-template-columns: minmax(280px, 320px) 1fr;
+    }
+
+    .music-preview-art {
+      border-radius: 18px;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: 'Playfair Display', serif;
+      color: #FFF7EC;
+      text-align: left;
+      padding: 16px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .music-preview-card.compact .music-preview-art {
+      min-height: 88px;
+      padding: 10px;
+      border-radius: 16px;
+    }
+
+    .platform-spotify {
+      background: linear-gradient(135deg, #146B4A, #1DB954 56%, #8CE8B2);
+    }
+
+    .platform-apple {
+      background: linear-gradient(135deg, #B1141E, #E44152 48%, #2B2B2B);
+    }
+
+    .platform-netease {
+      background: linear-gradient(135deg, #7B0008, #C9101B 54%, #F36A72);
+    }
+
+    .platform-custom {
+      background: linear-gradient(135deg, #314A68, #6E8FB8 58%, #D6E1F0);
+    }
+
+    .music-preview-copy {
+      display: grid;
+      gap: 8px;
+      align-content: center;
+    }
+
+    .music-preview-platform {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.86;
+    }
+
+    .music-preview-type {
+      font-size: 2rem;
+      line-height: 0.88;
+      letter-spacing: -0.05em;
+      max-width: 7ch;
+    }
+
+    .music-preview-card.compact .music-preview-type {
+      font-size: 1.15rem;
+      max-width: none;
+    }
+
+    .music-preview-badge {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-soft);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .music-preview-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--cream);
+    }
+
+    .music-preview-card.compact .music-preview-title {
+      font-size: 1.45rem;
+    }
+
+    .music-preview-meta {
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .music-preview-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    .music-open-btn {
+      padding: 9px 12px;
+      font-size: 10px;
+    }
+
+    .music-embed-wrap {
+      width: 100%;
+      min-height: 152px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #1B1A18;
+      border: 1px solid var(--line);
+    }
+
+    .music-embed-wrap iframe {
+      width: 100%;
+      height: 152px;
+      border: 0;
+      display: block;
+    }
+
+    .music-list-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .music-list-card {
+      display: grid;
+      grid-template-columns: 92px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 14px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.02);
+      cursor: pointer;
+    }
+
+    .music-list-card.has-embed {
+      grid-template-columns: minmax(280px, 320px) 1fr auto;
+      align-items: stretch;
+    }
+
+    .music-list-meta {
+      display: grid;
+      gap: 8px;
+    }
+
+    .music-list-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--cream);
+    }
+
+    .music-list-copy {
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .music-list-side {
+      display: grid;
+      gap: 8px;
+      justify-items: end;
+      text-align: right;
+    }
+
+    .music-list-side .status-chip {
+      justify-self: end;
+    }
+
+    .music-empty {
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px dashed var(--line-strong);
+      color: var(--text-dim);
+      text-align: center;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    @media (max-width: 900px) {
+      .music-preview-card,
+      .music-preview-card.compact,
+      .music-list-card {
+        grid-template-columns: 1fr;
+      }
+
+      .music-preview-art,
+      .music-preview-card.compact .music-preview-art {
+        min-height: 120px;
+      }
+
+      .music-list-side {
+        justify-items: start;
+        text-align: left;
+      }
+
+      .today-hero,
+      .today-board {
+        grid-template-columns: 1fr;
+      }
+
+      .today-span-2,
+      .today-block,
+      .today-block:last-child {
+        grid-column: auto;
+        border-right: none;
+      }
     }
 
     .progress {
@@ -1573,11 +2300,11 @@
       { id: 'quote', label: 'Quote' },
       { id: 'list', label: 'List' }
     ];
-    const TRACKS = [
-      { id: 'track-1', title: 'Late Tram Window', artist: 'Harbor Youth', mood: 'Chill', duration: '03:42', note: 'Soft synths for a rainy ride home.' },
-      { id: 'track-2', title: 'Bagel & Denim', artist: 'North Arcade', mood: 'Focused', duration: '04:18', note: 'A cityboy uniform in song form.' },
-      { id: 'track-3', title: 'Blue Hour Ride', artist: 'Metro Bloom', mood: 'Reflective', duration: '02:57', note: 'Good with cycling, dusk, and long captions.' },
-      { id: 'track-4', title: 'Coffee Steam Club', artist: 'Morning Unit', mood: 'Glowing', duration: '03:26', note: 'Warm keys and just enough optimism.' }
+    const MUSIC_PLATFORMS = [
+      { id: 'spotify', label: 'Spotify' },
+      { id: 'apple', label: 'Apple Music' },
+      { id: 'netease', label: 'Netease' },
+      { id: 'custom', label: 'Custom Link' }
     ];
     const JOURNAL_COVERS = [
       { id: 'none', label: 'No cover', src: '' },
@@ -1644,7 +2371,7 @@
     ];
 
     let currentScreen = 'cover';
-    let playTimer = null;
+    let archiveFlipTimer = null;
     let appState = loadState();
 
     function storageGet(key) {
@@ -1736,7 +2463,8 @@
         body: '',
         pullquote: '',
         imageData: '',
-        linkMusic: true,
+        musicOpen: false,
+        musicUrl: '',
         quoteBy: '',
         coverAsset: 'deco2',
         listItems: defaultListItems()
@@ -1745,14 +2473,13 @@
 
     function buildDefaultState() {
       return {
-        currentTrack: 1,
-        musicProgress: 38,
         draft: defaultDraft(),
         styleDraft: { title: '', note: '' },
         travelDraft: { title: '', note: '' },
         archive: {
           view: 'gallery',
-          selectedEntryId: 'entry-2'
+          selectedEntryId: 'entry-2',
+          flipDir: ''
         },
         profile: {
           selectedPersona: 'city-wanderer'
@@ -1769,8 +2496,13 @@
             body: 'Rode home slowly so I could keep the blue light a little longer. A coffee stop, one good song, and a slow route were enough to make the day feel like a proper magazine spread.',
             pullquote: 'Some days only need good light and a longer way home.',
             imageData: '',
-            linkMusic: true,
-            linkedTrack: 'Late Tram Window',
+            music: {
+              url: 'https://open.spotify.com/track/late-tram-window',
+              platform: 'spotify',
+              label: 'Spotify',
+              title: 'Late Tram Window',
+              subtitle: 'spotify.com'
+            },
             quoteBy: '',
             coverAsset: 'deco',
             listItems: defaultListItems(),
@@ -1787,8 +2519,13 @@
             body: 'I wrote three clean paragraphs, circled one lyric in the margin, and decided this journal should feel like an issue worth reopening instead of a task list worth clearing.',
             pullquote: 'Live simple, dress well, keep the page open.',
             imageData: '',
-            linkMusic: true,
-            linkedTrack: 'Bagel & Denim',
+            music: {
+              url: 'https://music.apple.com/example/bagel-and-denim',
+              platform: 'apple',
+              label: 'Apple Music',
+              title: 'Bagel & Denim',
+              subtitle: 'music.apple.com'
+            },
             quoteBy: '',
             coverAsset: 'deco2',
             listItems: defaultListItems(),
@@ -1833,7 +2570,7 @@
           },
           styleDraft: { title: '', note: '', ...(parsed.styleDraft || {}) },
           travelDraft: { title: '', note: '', ...(parsed.travelDraft || {}) },
-          archive: { view: 'gallery', selectedEntryId: 'entry-2', ...(parsed.archive || {}) },
+          archive: { view: 'gallery', selectedEntryId: 'entry-2', flipDir: '', ...(parsed.archive || {}) },
           profile: { selectedPersona: 'city-wanderer', ...(parsed.profile || {}) }
         };
       } catch (error) {
@@ -1853,7 +2590,169 @@
       return JOURNAL_COVERS.find((cover) => cover.id === id) || JOURNAL_COVERS[0];
     }
 
+    function detectMusicPlatform(url) {
+      const value = String(url || '').toLowerCase();
+      if (value.includes('spotify.com')) {
+        return 'spotify';
+      }
+      if (value.includes('music.apple.com') || value.includes('itunes.apple.com')) {
+        return 'apple';
+      }
+      if (value.includes('music.163.com') || value.includes('y.music.163.com')) {
+        return 'netease';
+      }
+      return 'custom';
+    }
+
+    function platformLabel(platform) {
+      const match = MUSIC_PLATFORMS.find((item) => item.id === platform);
+      return match ? match.label : 'Custom Link';
+    }
+
+    function getSpotifyEmbedUrl(url) {
+      try {
+        const parsed = new URL(url, window.location.href);
+        if (!parsed.hostname.includes('spotify.com')) {
+          return '';
+        }
+
+        const parts = parsed.pathname.split('/').filter(Boolean);
+        const spotifyIndex = parts.findIndex((part) => ['album', 'track', 'playlist', 'artist', 'episode', 'show'].includes(part));
+        if (spotifyIndex === -1 || !parts[spotifyIndex + 1]) {
+          return '';
+        }
+
+        const type = parts[spotifyIndex];
+        const id = parts[spotifyIndex + 1];
+        return 'https://open.spotify.com/embed/' + type + '/' + id + '?utm_source=generator&theme=0';
+      } catch (error) {
+        return '';
+      }
+    }
+
+    function musicTypeFromUrl(url) {
+      const value = String(url || '').toLowerCase();
+      if (value.includes('/album/')) {
+        return 'Album';
+      }
+      if (value.includes('/playlist/')) {
+        return 'Playlist';
+      }
+      if (value.includes('/track/') || value.includes('/song?')) {
+        return 'Track';
+      }
+      if (value.includes('/artist/')) {
+        return 'Artist';
+      }
+      return 'Link';
+    }
+
+    function titleFromMusicUrl(url) {
+      const value = String(url || '').trim();
+      if (!value) {
+        return '';
+      }
+
+      try {
+        const parsed = new URL(value, window.location.href);
+        const parts = parsed.pathname.split('/').filter(Boolean);
+        const slug = parts[parts.length - 1] || parts[parts.length - 2] || '';
+        const clean = decodeURIComponent(slug)
+          .replace(/\?.*$/, '')
+          .replace(/[-_]+/g, ' ')
+          .replace(/\b(album|playlist|track|song|artist)\b/gi, '')
+          .replace(/\s{2,}/g, ' ')
+          .trim();
+        if (!clean || /^[0-9a-z]{10,}$/i.test(clean)) {
+          return '';
+        }
+        return clean.replace(/\b\w/g, (letter) => letter.toUpperCase());
+      } catch (error) {
+        return '';
+      }
+    }
+
+    // Build a lightweight faux-player card from a pasted music URL without depending on external metadata APIs.
+    function getMusicAttachment(input, fallbackTitle) {
+      if (!input) {
+        return null;
+      }
+
+      if (typeof input === 'string') {
+        const platform = detectMusicPlatform(input);
+        const type = musicTypeFromUrl(input);
+        let subtitle = '';
+        try {
+          subtitle = new URL(input, window.location.href).hostname.replace(/^www\./, '');
+        } catch (error) {
+          subtitle = 'Attached from URL';
+        }
+        return {
+          url: input,
+          platform,
+          type,
+          label: platformLabel(platform),
+          title: titleFromMusicUrl(input) || fallbackTitle || type + ' Link',
+          subtitle,
+          meta: platformLabel(platform) + ' · ' + type,
+          embedUrl: platform === 'spotify' ? getSpotifyEmbedUrl(input) : ''
+        };
+      }
+
+      return input.url ? {
+        type: input.type || musicTypeFromUrl(input.url),
+        label: input.label || platformLabel(input.platform),
+        meta: input.meta || ((input.label || platformLabel(input.platform)) + ' · ' + (input.type || musicTypeFromUrl(input.url))),
+        embedUrl: input.embedUrl || (input.platform === 'spotify' ? getSpotifyEmbedUrl(input.url) : ''),
+        ...input
+      } : null;
+    }
+
+    function renderMusicVisual(attachment, context) {
+      if (attachment.embedUrl) {
+        return `
+          <div class="music-embed-wrap">
+            <iframe
+              src="${escapeHtml(attachment.embedUrl)}"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+            ></iframe>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="music-preview-art platform-${attachment.platform}">
+          <div class="music-preview-platform">${escapeHtml(attachment.label)}</div>
+          <div class="music-preview-type">${escapeHtml(context === 'list' ? (attachment.type || 'Music') : (attachment.type || 'Album'))}</div>
+        </div>
+      `;
+    }
+
+    function renderMusicAttachmentCard(attachment, context) {
+      if (!attachment) {
+        return '';
+      }
+
+      const compact = context === 'list';
+      return `
+        <div class="music-preview-card ${compact ? 'compact' : ''} ${attachment.embedUrl ? 'has-embed' : ''}">
+          ${renderMusicVisual(attachment, context)}
+          <div class="music-preview-copy">
+            <div class="music-preview-badge">${escapeHtml(attachment.meta || attachment.label)}</div>
+            <div class="music-preview-title">${escapeHtml(attachment.title || 'Music Link')}</div>
+            <div class="music-preview-meta">${escapeHtml(attachment.subtitle || 'Attached from URL')}</div>
+            <div class="music-preview-actions">
+              <span class="status-chip ${compact ? '' : 'active'}">${escapeHtml(context === 'list' ? 'Saved in journal' : 'Will publish with page')}</span>
+              <button class="ghost-btn music-open-btn" data-action="open-music-url" data-music-url="${escapeHtml(attachment.url)}">Open link</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
     function draftAsEntry(draft) {
+      const music = getMusicAttachment(draft.musicUrl, draft.title || draft.dek || 'Music Link');
       return {
         template: draft.template,
         mood: draft.mood,
@@ -1866,7 +2765,8 @@
         imageData: draft.imageData,
         quoteBy: draft.quoteBy,
         coverAsset: draft.coverAsset,
-        listItems: draft.listItems
+        listItems: draft.listItems,
+        music
       };
     }
 
@@ -1879,6 +2779,15 @@
       return entries.find((entry) => entry.id === appState.archive.selectedEntryId) || entries[0] || null;
     }
 
+    function getMusicEntries(stats) {
+      return stats.entries
+        .filter((entry) => entry.music && entry.music.url)
+        .map((entry) => ({
+          ...entry,
+          music: getMusicAttachment(entry.music, entry.title)
+        }));
+    }
+
     // Render a finished journal page with the selected decorative cover sitting above the content layer.
     function renderJournalSheet(entry, mode) {
       const cover = getCoverAsset(entry.coverAsset);
@@ -1889,6 +2798,7 @@
       const quoteBy = escapeHtml(entry.quoteBy || '');
       const listItems = Array.isArray(entry.listItems) ? entry.listItems : [];
       const hasMedia = Boolean(entry.imageData) && entry.template !== 'quote' && entry.template !== 'list';
+      const useFramedMedia = Boolean(cover.src && entry.imageData);
       const classes = [
         'journal-sheet',
         mode === 'book' ? 'book' : 'compact',
@@ -1926,7 +2836,7 @@
       } else if (entry.template === 'photo') {
         contentHtml = `
           <div class="journal-kicker">${escapeHtml(niceDate(entry.date || new Date()))}</div>
-          ${entry.imageData ? `<div class="journal-media"><img src="${entry.imageData}" alt="${title}"></div>` : ''}
+          ${entry.imageData && !useFramedMedia ? `<div class="journal-media"><img src="${entry.imageData}" alt="${title}"></div>` : ''}
           <div class="journal-title">${title}</div>
           ${dek ? `<div class="journal-dek">${dek}</div>` : ''}
           <div class="journal-body">${body}</div>
@@ -1936,7 +2846,7 @@
           <div class="journal-kicker">${escapeHtml(niceDate(entry.date || new Date()))}</div>
           <div class="journal-title">${title}</div>
           ${dek ? `<div class="journal-dek">${dek}</div>` : ''}
-          ${entry.imageData && entry.template === 'editorial' ? `<div class="journal-media"><img src="${entry.imageData}" alt="${title}"></div>` : ''}
+          ${entry.imageData && entry.template === 'editorial' && !useFramedMedia ? `<div class="journal-media"><img src="${entry.imageData}" alt="${title}"></div>` : ''}
           <div class="journal-body">${body}</div>
           ${quote ? `<div class="journal-quote">${quote}</div>` : ''}
         `;
@@ -1944,6 +2854,11 @@
 
       return `
         <article class="${classes}">
+          ${useFramedMedia ? `
+            <div class="journal-sheet-underlay">
+              <img src="${entry.imageData}" alt="${title}">
+            </div>
+          ` : ''}
           <div class="journal-sheet-content">
             ${contentHtml}
           </div>
@@ -1957,7 +2872,7 @@
       const entries = [...state.entries].sort((left, right) => new Date(right.createdAt) - new Date(left.createdAt));
       const dateSet = [...new Set(entries.map((entry) => entry.date))].sort((left, right) => parseCalendarDate(right) - parseCalendarDate(left));
       const totalWords = entries.reduce((sum, entry) => sum + (entry.wordCount || wordCount(entry.body)), 0);
-      const linkedSongs = entries.filter((entry) => entry.linkedTrack).length;
+      const linkedSongs = entries.filter((entry) => entry.music && entry.music.url).length;
       const photoEntries = entries.filter((entry) => entry.template === 'photo').length;
       const today = new Date();
       const todayKey = isoDate(today);
@@ -2115,111 +3030,107 @@
 
     function renderToday(stats) {
       const latest = stats.latestEntry;
+      const latestMusic = getMusicEntries(stats)[0] || null;
+      const dots = Array.from({ length: 6 }, (_, index) => index < Math.min(stats.streak, 4));
       document.getElementById('screen-today').innerHTML = `
         <div class="page-shell">
           <section class="mag-frame">
             ${topbar(stats)}
-            <div class="module-shell">
-              <div class="module-header">
+            <div class="today-editorial">
+              <section class="today-hero">
                 <div>
-                  <div class="section-kicker">Today issue</div>
-                  <h1 class="module-title">Magazine cover, then the day opens up.</h1>
-                  <p class="module-copy">首页内容遵循 PRD 的结构，保留今日 lead、音乐、streak 和 archive 摘要，但主界面入口已经收回到 cover。</p>
+                  <div class="today-kicker">✦ Today's entry</div>
+                  <div class="today-hero-quote">"${escapeHtml(latest ? (latest.pullquote || latest.title) : 'Begin with whatever is already here.')}"</div>
+                  <div class="today-hero-copy">${latest ? escapeHtml(niceDate(latest.date)) : escapeHtml(niceDate(new Date()))} · Tap to write →</div>
                 </div>
-                <div class="toolbar-actions">
-                  <button class="ghost-btn" data-open="cover">Back to cover</button>
-                  <button class="solid-btn" data-open="write">Write today</button>
+                <div class="today-hero-meta">
+                  <div class="today-kicker">Issue 3-1</div>
+                  <div>${escapeHtml(niceDate(new Date()))}</div>
+                  <div>${escapeHtml(stats.selectedPersona.name)}</div>
+                  <div class="today-issue-no">01</div>
                 </div>
-              </div>
+              </section>
 
-              <div class="today-grid">
-                <article class="panel lead-card">
-                  <div>
-                    <div class="panel-head">
-                      <div>
-                        <div class="section-kicker">Lead story</div>
-                        <div class="panel-title">${latest ? escapeHtml(latest.title) : 'Write the first page of this issue.'}</div>
-                      </div>
-                    </div>
-                    <p class="panel-copy">${latest ? escapeHtml(latest.dek || excerpt(latest.body, 180)) : '当你发布今天这一页，这里会自动更新成最新一期 lead。'}</p>
-                  </div>
-                  <div class="micro-meta">
-                    <span>${stats.entryCount} entries</span>
-                    <span>${stats.streak} day streak</span>
-                    <span>${stats.trophyCount} trophies</span>
-                  </div>
-                </article>
-
-                <article class="panel">
-                  <div class="panel-head">
-                    <div>
-                      <div class="section-kicker">Current soundtrack</div>
-                      <div class="panel-title">${escapeHtml(TRACKS[appState.currentTrack].title)}</div>
-                    </div>
-                  </div>
-                  <p class="panel-copy">${escapeHtml(TRACKS[appState.currentTrack].artist)} · ${escapeHtml(TRACKS[appState.currentTrack].note)}</p>
-                  <div class="progress" style="margin-top:18px;">
-                    <div class="progress-fill" style="width:${appState.musicProgress}%"></div>
-                  </div>
-                  <div class="toolbar-actions" style="margin-top:18px; justify-content:flex-start;">
-                    <button class="ghost-btn" data-open="music">Open music</button>
-                  </div>
-                </article>
-              </div>
-
-              <article class="panel" style="margin-top:16px;">
-                <div class="panel-head">
-                  <div>
-                    <div class="section-kicker">Week streak</div>
-                    <div class="panel-title">Keep the issue alive all week.</div>
-                  </div>
-                </div>
-                <div class="week-list">
-                  ${stats.week.map((day) => `
-                    <div class="week-chip ${day.done ? 'done' : ''} ${day.today ? 'today' : ''}">
-                      <span class="week-num">${day.num}</span>
-                      <span class="week-day">${day.day}</span>
-                    </div>
-                  `).join('')}
-                </div>
-              </article>
-
-              <div class="today-grid" style="margin-top:16px;">
-                <article class="panel">
-                  <div class="panel-head">
-                    <div>
-                      <div class="section-kicker">Archive</div>
-                      <div class="panel-title">Recent pages</div>
-                    </div>
-                    <button class="ghost-btn" data-open="archive">Open archive</button>
-                  </div>
-                  <div class="entry-list">
-                    ${stats.entries.slice(0, 2).map((entry) => `
-                      <div class="entry-card">
-                        <div class="entry-meta">
-                          <span>${escapeHtml(entry.template)}</span>
-                          <span>${escapeHtml(niceDate(entry.date))}</span>
+              <section class="today-board">
+                <article class="today-block cream today-span-2">
+                  <div class="today-kicker">♫ Now playing</div>
+                  ${latestMusic ? `
+                    <div class="today-music-mini">
+                      ${latestMusic.music.embedUrl ? `
+                        <div class="today-mini-embed">
+                          <iframe src="${escapeHtml(latestMusic.music.embedUrl)}" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                         </div>
-                        <div class="entry-title">${escapeHtml(entry.title)}</div>
-                        <div class="entry-body">${escapeHtml(excerpt(entry.body, 110))}</div>
+                      ` : `
+                        <div class="today-mini-embed">${renderMusicVisual(latestMusic.music, 'list')}</div>
+                      `}
+                      <div>
+                        <div class="today-block-title">${escapeHtml(latestMusic.music.title || latestMusic.title)}</div>
+                        <div class="today-block-copy">${escapeHtml((latestMusic.music.label || 'Music Link') + ' · linked in “' + latestMusic.title + '”')}</div>
+                        <div class="today-block-copy">${stats.linkedSongs} tracks linked today</div>
                       </div>
-                    `).join('')}
+                    </div>
+                  ` : `
+                    <div class="today-block-title">No linked music yet</div>
+                  `}
+                </article>
+
+                <article class="today-block sage">
+                  <div class="today-kicker">Streak</div>
+                  <div class="today-streak-num">${stats.streak}</div>
+                  <div class="today-dots">
+                    ${dots.map((on) => `<span class="${on ? 'on' : ''}"></span>`).join('')}
+                  </div>
+                  <div class="today-block-copy" style="text-align:center;">${Math.max(0, 3 - stats.trophyCount)} more → trophy</div>
+                </article>
+
+                <article class="today-block cream">
+                  <div class="today-kicker">Style</div>
+                  <div class="today-block-title">${escapeHtml(appState.styleNotes[0] ? appState.styleNotes[0].title : 'Stadium Jumper')}</div>
+                </article>
+
+                <article class="today-block rust today-span-2">
+                  <div class="today-kicker">🗺 Travel</div>
+                  <div class="today-block-title">${escapeHtml(appState.travelNotes[0] ? appState.travelNotes[0].title : 'Next Trip')}</div>
+                </article>
+
+                <article class="today-block cream">
+                  <div class="today-kicker">🏆 Trophies</div>
+                  <div class="today-block-title">${stats.trophyCount} Unlocked</div>
+                </article>
+
+                <article class="today-block ink today-span-2">
+                  <div class="today-kicker">Character</div>
+                  <div class="today-character">
+                    <img src="${escapeHtml(stats.selectedPersona.coverSrc)}" alt="${escapeHtml(stats.selectedPersona.name)}">
+                    <div>
+                      <div class="today-block-title">${escapeHtml(stats.selectedPersona.name)}</div>
+                      <div class="today-block-copy">City Wanderer · Lv ${stats.trophyCount || 1}</div>
+                    </div>
                   </div>
                 </article>
 
-                <article class="panel">
-                  <div class="panel-head">
-                    <div>
-                      <div class="section-kicker">Persona</div>
-                      <div class="panel-title">${escapeHtml(stats.selectedPersona.name)}</div>
-                    </div>
-                  </div>
-                  <p class="panel-copy">${escapeHtml(stats.selectedPersona.subtitle)}</p>
-                  <div class="toolbar-actions" style="justify-content:flex-start; margin-top:18px;">
-                    <button class="ghost-btn" data-open="archive">Switch persona</button>
-                  </div>
+                <article class="today-block cream">
+                  <div class="today-kicker">Past entry</div>
+                  <div class="today-block-title">${escapeHtml(stats.entries[1] ? '"' + (stats.entries[1].pullquote || excerpt(stats.entries[1].body, 42)) + '"' : '"The cafe was warm, and the rain was just right."')}</div>
+                  <div class="today-block-copy">${stats.entries[1] ? escapeHtml(niceDate(stats.entries[1].date) + ' · ' + stats.entries[1].template) : 'Apr 04 · Photo-led'}</div>
                 </article>
-              </div>
+
+                <article class="today-block cream today-span-2">
+                  <div class="today-kicker">Today's mood</div>
+                  <div class="today-moods">${['😉', '🤍', '🌧️', '✨', '🔥'].map((icon) => `<span>${icon}</span>`).join('')}</div>
+                  <div class="today-entry-arrow">→ entry</div>
+                </article>
+
+                <article class="today-block gold today-action" data-open="write" role="button" tabindex="0">
+                  <div class="today-kicker">✦</div>
+                  <div class="today-block-title">Write</div>
+                </article>
+
+                <article class="today-block cream today-span-2">
+                  <div class="today-kicker">This week</div>
+                  <div class="today-block-title">${stats.entryCount} entries · ${stats.totalWords.toLocaleString('en-US')} words · ${stats.linkedSongs} songs</div>
+                </article>
+              </section>
             </div>
           </section>
         </div>
@@ -2423,12 +3334,25 @@
 
                   <div class="panel">
                     <div class="field-kicker">Music link</div>
-                    <label class="switch-row" style="margin-top:12px;">
-                      <div>
-                        <div class="panel-copy">保存时自动把当前曲目附到这篇条目。</div>
+                    <div class="toolbar-actions" style="justify-content:flex-start; margin-top:12px;">
+                      <button class="ghost-btn" data-action="toggle-music-attach">
+                        ${draft.musicOpen || draft.musicUrl ? 'Hide music URL' : 'Add music URL'}
+                      </button>
+                      ${draft.musicUrl ? `<button class="ghost-btn" data-action="clear-music-url">Clear URL</button>` : ''}
+                    </div>
+                    ${draft.musicOpen || draft.musicUrl ? `
+                      <div class="music-attach-box">
+                        <input
+                          class="music-url-input"
+                          data-draft-field="musicUrl"
+                          placeholder="Paste Spotify / Apple Music / Netease / other music URL"
+                          value="${escapeHtml(draft.musicUrl)}"
+                        >
+                        <div id="write-music-preview">${draft.musicUrl ? renderMusicAttachmentCard(getMusicAttachment(draft.musicUrl, draft.title || draft.dek || 'Music Link')) : ''}</div>
                       </div>
-                      <input type="checkbox" data-draft-field="linkMusic" ${draft.linkMusic ? 'checked' : ''}>
-                    </label>
+                    ` : `
+                      <div class="panel-copy" style="margin-top:12px;">只有在这里追加音乐平台 URL 时，音乐卡片才会出现。</div>
+                    `}
                   </div>
 
                   <div class="panel">
@@ -2441,12 +3365,6 @@
                         </button>
                       `).join('')}
                     </div>
-                  </div>
-
-                  <div class="panel">
-                    <div class="field-kicker">Current soundtrack</div>
-                    <div class="panel-title" style="margin-top:10px;">${escapeHtml(TRACKS[appState.currentTrack].title)}</div>
-                    <div class="panel-copy">${escapeHtml(TRACKS[appState.currentTrack].artist)} · ${escapeHtml(TRACKS[appState.currentTrack].note)}</div>
                   </div>
 
                   <div class="preview-panel">
@@ -2468,7 +3386,7 @@
     }
 
     function renderMusic(stats) {
-      const currentTrack = TRACKS[appState.currentTrack];
+      const musicEntries = getMusicEntries(stats);
       document.getElementById('screen-music').innerHTML = `
         <div class="page-shell">
           <section class="mag-frame">
@@ -2478,44 +3396,42 @@
                 <div>
                   <div class="section-kicker">Music module</div>
                   <h1 class="module-title">Soundtrack shelf</h1>
-                  <p class="module-copy">音乐模块保持 PRD 里的 now playing + 情绪标签 + 歌曲与日记关联。</p>
+                  <p class="module-copy">这里只展示已经在 journal 里记录下来的音乐链接。缩略图和播放器卡片都来自 write 里粘贴的 URL。</p>
                 </div>
                 <div class="toolbar-actions">
                   <button class="ghost-btn" data-open="cover">Back to cover</button>
-                  <button class="solid-btn" data-open="write">Link in journal</button>
+                  <button class="solid-btn" data-open="write">Add music in write</button>
                 </div>
               </div>
 
-              <div class="music-grid">
-                <article class="panel player-card">
-                  <div class="section-kicker">Now playing</div>
-                  <div class="panel-title">${escapeHtml(currentTrack.title)}</div>
-                  <div class="panel-copy">${escapeHtml(currentTrack.artist)} · ${escapeHtml(currentTrack.note)}</div>
-                  <div class="progress">
-                    <div class="progress-fill" style="width:${appState.musicProgress}%"></div>
-                  </div>
-                  <div class="toolbar-actions" style="justify-content:flex-start;">
-                    <button class="ghost-btn" data-action="toggle-play">${playTimer ? 'Pause demo' : 'Play demo'}</button>
-                    <button class="ghost-btn" data-action="next-track">Next track</button>
-                  </div>
-                </article>
-
-                <article class="panel">
-                  <div class="section-kicker">Track list</div>
-                  <div class="track-list" style="margin-top:14px;">
-                    ${TRACKS.map((track, index) => `
-                      <button class="track-card ${index === appState.currentTrack ? 'active' : ''}" data-track-index="${index}">
-                        <div class="entry-meta">
-                          <span>Track ${index + 1}</span>
-                          <span>${escapeHtml(track.duration)}</span>
+              <article class="panel">
+                <div class="section-kicker">Tracked music</div>
+                ${musicEntries.length ? `
+                  <div class="music-list-grid" style="margin-top:14px;">
+                    ${musicEntries.map((entry) => `
+                      <div class="music-list-card ${entry.music.embedUrl ? 'has-embed' : ''}" data-music-url="${escapeHtml(entry.music.url)}" role="button" tabindex="0">
+                        ${renderMusicVisual(entry.music, 'list')}
+                        <div class="music-list-meta">
+                          <div class="entry-meta">
+                            <span>${escapeHtml(entry.music.label)}</span>
+                            <span>${escapeHtml(niceDate(entry.date))}</span>
+                          </div>
+                          <div class="music-list-title">${escapeHtml(entry.music.title || entry.title)}</div>
+                          <div class="music-list-copy">${escapeHtml(entry.music.subtitle || 'Saved from music URL')} · linked in “${entry.title}”</div>
                         </div>
-                        <div class="entry-title">${escapeHtml(track.title)}</div>
-                        <div class="entry-body">${escapeHtml(track.artist)} · ${escapeHtml(track.mood)} · ${escapeHtml(track.note)}</div>
-                      </button>
+                        <div class="music-list-side">
+                          <span class="status-chip unlocked">Open link</span>
+                          <span class="entry-meta">${escapeHtml(entry.template)}</span>
+                        </div>
+                      </div>
                     `).join('')}
                   </div>
-                </article>
-              </div>
+                ` : `
+                  <div class="music-empty" style="margin-top:14px;">
+                    还没有记录任何音乐。去 Write 里粘贴一个音乐平台 URL，发布后这里就会出现带缩略图的音乐卡片。
+                  </div>
+                `}
+              </article>
             </div>
           </section>
         </div>
@@ -2622,6 +3538,7 @@
       const entries = getArchiveEntries(stats);
       const selectedEntry = getSelectedArchiveEntry(stats);
       const selectedIndex = selectedEntry ? entries.findIndex((entry) => entry.id === selectedEntry.id) : -1;
+      const previousEntry = selectedIndex > 0 ? entries[selectedIndex - 1] || null : null;
       const nextEntry = selectedIndex >= 0 ? entries[selectedIndex + 1] || null : null;
 
       document.getElementById('screen-archive').innerHTML = `
@@ -2711,45 +3628,41 @@
                     </div>
                   ` : `
                     <div class="book-stage" style="margin-top:14px;">
-                      <aside class="book-sidebar">
-                        ${selectedEntry ? `
-                          <div class="entry-card">
-                            <div class="entry-meta">
-                              <span>${escapeHtml(selectedEntry.template)}</span>
-                              <span>${escapeHtml(niceDate(selectedEntry.date))}</span>
-                              <span>${selectedEntry.wordCount} words</span>
-                            </div>
-                            <div class="entry-title">${escapeHtml(selectedEntry.title)}</div>
-                            <div class="entry-body">${escapeHtml(excerpt(selectedEntry.body, 140))}</div>
+                      <div class="book-spread">
+                        <div class="paper-book-theater">
+                          <div class="paper-book-count">${entries.length} pages</div>
+                          <div class="paper-book-title">
+                            <h3>${selectedEntry ? escapeHtml(selectedEntry.title) : 'Journal book'}</h3>
+                            <p>${selectedEntry ? escapeHtml(niceDate(selectedEntry.date)) + ' • ' + escapeHtml(selectedEntry.template) : 'Open a page'}</p>
                           </div>
-                          <div class="toolbar-actions" style="justify-content:flex-start;">
+                          <div class="paper-stack left"></div>
+                          <div class="paper-stack left second"></div>
+                          <div class="paper-stack right"></div>
+                          <div class="paper-stack right second"></div>
+                          <div class="paper-book-center ${appState.archive.flipDir ? 'flip-' + appState.archive.flipDir : ''}">
+                            <div class="paper-leaf left">
+                              ${previousEntry ? renderJournalSheet(previousEntry, 'book') : '<div class="book-placeholder">Front matter<br>Older pages will stack here.</div>'}
+                            </div>
+                            <div class="paper-leaf right">
+                              ${selectedEntry ? renderJournalSheet(selectedEntry, 'book') : '<div class="book-placeholder">No selected entry.</div>'}
+                            </div>
+                          </div>
+                          <div class="paper-book-nav">
                             <button class="ghost-btn" data-entry-nav="-1">Newer page</button>
                             <button class="ghost-btn" data-entry-nav="1">Older page</button>
                           </div>
-                        ` : `
-                          <div class="entry-card">
-                            <div class="entry-title">No page yet</div>
-                            <div class="entry-body">Publish a page to start your journal bookshelf.</div>
-                          </div>
-                        `}
-                        <div class="entry-list">
+                        </div>
+                        <div class="book-thumb-strip">
                           ${entries.map((entry) => `
-                            <div class="entry-card ${selectedEntry && selectedEntry.id === entry.id ? 'active' : ''}" data-entry-id="${entry.id}" role="button" tabindex="0" style="text-align:left;">
+                            <div class="book-thumb ${selectedEntry && selectedEntry.id === entry.id ? 'active' : ''}" data-entry-id="${entry.id}" role="button" tabindex="0">
+                              ${renderJournalSheet(entry, 'preview')}
                               <div class="entry-meta">
-                                <span>${escapeHtml(entry.template)}</span>
                                 <span>${escapeHtml(niceDate(entry.date))}</span>
                               </div>
-                              <div class="entry-title">${escapeHtml(entry.title)}</div>
                             </div>
                           `).join('')}
                         </div>
-                      </aside>
-
-                      <div class="book-spread">
-                        <div class="book-pages">
-                          ${selectedEntry ? renderJournalSheet(selectedEntry, 'book') : '<div class="book-placeholder">No selected entry.</div>'}
-                          ${nextEntry ? renderJournalSheet(nextEntry, 'book') : '<div class="book-placeholder">Endpaper<br>Flip forward after you publish the next page.</div>'}
-                        </div>
+                        ${nextEntry ? `<div class="entry-card" style="margin-top:14px;"><div class="section-kicker">Next page</div><div class="entry-title" style="margin-top:8px;">${escapeHtml(nextEntry.title)}</div></div>` : ''}
                       </div>
                     </div>
                   `}
@@ -2791,9 +3704,23 @@
       }, 2200);
     }
 
+    function syncWriteMusicPreview() {
+      const preview = document.getElementById('write-music-preview');
+      if (!preview) {
+        return;
+      }
+
+      preview.innerHTML = appState.draft.musicUrl
+        ? renderMusicAttachmentCard(getMusicAttachment(appState.draft.musicUrl, appState.draft.title || appState.draft.dek || 'Music Link'))
+        : '';
+    }
+
     function updateDraft(field, value) {
       appState.draft[field] = value;
       saveState();
+      if (appState.draft.musicUrl) {
+        syncWriteMusicPreview();
+      }
     }
 
     // Keep the list template editable by storing each row as structured draft data instead of flattening it into body text.
@@ -2819,6 +3746,20 @@
       setScreen('write');
     }
 
+    function triggerArchiveFlip(direction) {
+      appState.archive.flipDir = direction;
+      saveState();
+      clearTimeout(archiveFlipTimer);
+      archiveFlipTimer = setTimeout(() => {
+        appState.archive.flipDir = '';
+        saveState();
+        if (currentScreen === 'archive') {
+          renderAll();
+          setScreen('archive');
+        }
+      }, 720);
+    }
+
     function setArchiveView(view) {
       appState.archive.view = view;
       saveState();
@@ -2827,6 +3768,17 @@
     }
 
     function selectArchiveEntry(entryId) {
+      const stats = deriveStats(appState);
+      const entries = getArchiveEntries(stats);
+      const current = getSelectedArchiveEntry(stats);
+      const next = entries.find((entry) => entry.id === entryId);
+      if (current && next) {
+        const currentIndex = entries.findIndex((entry) => entry.id === current.id);
+        const nextIndex = entries.findIndex((entry) => entry.id === next.id);
+        if (nextIndex !== currentIndex) {
+          triggerArchiveFlip(nextIndex > currentIndex ? 'next' : 'prev');
+        }
+      }
       appState.archive.selectedEntryId = entryId;
       saveState();
       renderAll();
@@ -2843,6 +3795,9 @@
       const current = getSelectedArchiveEntry(stats);
       const index = current ? entries.findIndex((entry) => entry.id === current.id) : 0;
       const nextIndex = Math.min(entries.length - 1, Math.max(0, index + delta));
+      if (nextIndex !== index) {
+        triggerArchiveFlip(delta > 0 ? 'next' : 'prev');
+      }
       appState.archive.selectedEntryId = entries[nextIndex].id;
       saveState();
       renderAll();
@@ -2897,7 +3852,7 @@
 
       const before = deriveStats(appState);
       const now = new Date();
-      const linkedTrack = draft.linkMusic ? TRACKS[appState.currentTrack].title : '';
+      const music = getMusicAttachment(draft.musicUrl, titleSource.trim());
 
       const newEntry = {
         id: nextId('entry'),
@@ -2910,8 +3865,7 @@
         body: bodySource.trim(),
         pullquote: draft.pullquote.trim(),
         imageData: draft.imageData,
-        linkMusic: draft.linkMusic,
-        linkedTrack,
+        music,
         quoteBy: draft.quoteBy.trim(),
         coverAsset: draft.coverAsset,
         listItems: draft.listItems.map((item) => ({ title: item.title, note: item.note })),
@@ -2921,6 +3875,7 @@
       appState.entries.unshift(newEntry);
       appState.archive.view = 'book';
       appState.archive.selectedEntryId = newEntry.id;
+      appState.archive.flipDir = '';
 
       appState.draft = {
         ...defaultDraft(),
@@ -2933,6 +3888,7 @@
       const after = deriveStats(appState);
       renderAll();
       setScreen('archive');
+      triggerArchiveFlip('next');
 
       if (after.trophyCount > before.trophyCount) {
         showToast('Published. New trophy unlocked.');
@@ -2958,40 +3914,20 @@
       showToast(persona.name + ' selected.');
     }
 
-    // Demo playback only animates the progress bar and rotates the active track to keep the prototype lightweight.
-    function togglePlay() {
-      if (playTimer) {
-        clearInterval(playTimer);
-        playTimer = null;
-        renderAll();
-        setScreen('music');
-        return;
-      }
-
-      playTimer = setInterval(() => {
-        appState.musicProgress += 3;
-        if (appState.musicProgress >= 100) {
-          appState.musicProgress = 0;
-          appState.currentTrack = (appState.currentTrack + 1) % TRACKS.length;
-        }
-        saveState();
-        if (currentScreen === 'music') {
-          renderAll();
-          setScreen('music');
-        }
-      }, 900);
-
-      renderAll();
-      setScreen('music');
-    }
-
-    function selectTrack(index) {
-      appState.currentTrack = index;
-      appState.musicProgress = 22;
+    function toggleMusicAttach() {
+      appState.draft.musicOpen = !appState.draft.musicOpen;
       saveState();
       renderAll();
-      setScreen('music');
-      showToast('Track selected for today.');
+      setScreen('write');
+    }
+
+    function openMusicUrl(url) {
+      const target = String(url || '').trim();
+      if (!target) {
+        showToast('这个音乐链接还没有填写。');
+        return;
+      }
+      window.open(target, '_blank', 'noopener,noreferrer');
     }
 
     function handleImage(file) {
@@ -3016,6 +3952,23 @@
         showToast('图片读取失败，请再试一次。');
       };
       reader.readAsDataURL(file);
+    }
+
+    function handleMusicUrlInput(value) {
+      appState.draft.musicUrl = value.trim();
+      if (appState.draft.musicUrl) {
+        appState.draft.musicOpen = true;
+      }
+      saveState();
+      syncWriteMusicPreview();
+    }
+
+    function clearMusicUrl() {
+      appState.draft.musicUrl = '';
+      appState.draft.musicOpen = false;
+      saveState();
+      renderAll();
+      setScreen('write');
     }
 
     document.addEventListener('click', (event) => {
@@ -3067,9 +4020,9 @@
         return;
       }
 
-      const trackTarget = event.target.closest('[data-track-index]');
-      if (trackTarget) {
-        selectTrack(Number(trackTarget.getAttribute('data-track-index')));
+      const musicTarget = event.target.closest('[data-music-url]');
+      if (musicTarget) {
+        openMusicUrl(musicTarget.getAttribute('data-music-url'));
         return;
       }
 
@@ -3087,10 +4040,12 @@
       const action = actionTarget.getAttribute('data-action');
       if (action === 'publish-entry') {
         publishEntry();
-      } else if (action === 'toggle-play') {
-        togglePlay();
-      } else if (action === 'next-track') {
-        selectTrack((appState.currentTrack + 1) % TRACKS.length);
+      } else if (action === 'toggle-music-attach') {
+        toggleMusicAttach();
+      } else if (action === 'clear-music-url') {
+        clearMusicUrl();
+      } else if (action === 'open-music-url') {
+        openMusicUrl(actionTarget.getAttribute('data-music-url'));
       } else if (action === 'open-image-picker') {
         document.getElementById('draft-image-input').click();
       } else if (action === 'add-style-note') {
@@ -3106,6 +4061,10 @@
       const field = event.target.getAttribute('data-draft-field');
       if (field) {
         const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+        if (field === 'musicUrl') {
+          handleMusicUrlInput(value);
+          return;
+        }
         updateDraft(field, value);
         return;
       }
